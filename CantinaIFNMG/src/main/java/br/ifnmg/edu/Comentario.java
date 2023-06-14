@@ -5,34 +5,38 @@
 package br.ifnmg.edu;
 
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author Lucas Freitas &lt;lpf1 at ifnmg.edu.br&gt;
  */
 @Entity
-public class Credencial implements Serializable {
+public class Comentario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String senha;
+    @NotNull
+    private String texto;
 
-    @Column(length = 255)
-    private String email;
+    @NotNull
+    private Integer avaliacao;
 
-    @OneToOne(mappedBy = "credencial")
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    //<editor-fold defaultstate="collapsed" desc="Getters / Setters">
     public Long getId() {
         return id;
     }
@@ -41,20 +45,20 @@ public class Credencial implements Serializable {
         this.id = id;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getTexto() {
+        return texto;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setTexto(String texto) {
+        this.texto = texto;
     }
 
-    public String getEmail() {
-        return email;
+    public Integer getAvaliacao() {
+        return avaliacao;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAvaliacao(Integer avaliacao) {
+        this.avaliacao = avaliacao;
     }
 
     public Cliente getCliente() {
@@ -64,8 +68,7 @@ public class Credencial implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-//</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="Hash / Equals / ToString">
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -76,10 +79,10 @@ public class Credencial implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Credencial)) {
+        if (!(object instanceof Comentario)) {
             return false;
         }
-        Credencial other = (Credencial) object;
+        Comentario other = (Comentario) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -88,8 +91,7 @@ public class Credencial implements Serializable {
 
     @Override
     public String toString() {
-        return "br.ifnmg.edu.Credencial[ id=" + id + " ]";
+        return "br.ifnmg.edu.Comentario[ id=" + id + " ]";
     }
 
-//</editor-fold>
 }

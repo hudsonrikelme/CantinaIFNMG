@@ -6,6 +6,7 @@ package br.ifnmg.edu;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,11 +28,10 @@ public class Produto implements Serializable {
     private String nome;
 
     private String descricao;
-    
+
     @Column(precision = 5,
             scale = 2)
     private BigDecimal preco = BigDecimal.ZERO;
-
 
     //<editor-fold defaultstate="collapsed" desc="Getters / Setters">
     public Long getId() {
@@ -70,28 +70,49 @@ public class Produto implements Serializable {
     //<editor-fold defaultstate="collapsed" desc="Hash / Equals / ToString">
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + Objects.hashCode(this.nome);
+        hash = 79 * hash + Objects.hashCode(this.descricao);
+        hash = 79 * hash + Objects.hashCode(this.preco);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Produto)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Produto other = (Produto) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Produto other = (Produto) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.descricao, other.descricao)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        
+        if(!Objects.equals(this.preco, other.preco)){
+            return false;
+        }
+
+        return (obj.hashCode() == this.hashCode());
     }
+
+    
 
     @Override
     public String toString() {
-        return "br.ifnmg.edu.Produto[ id=" + id + " ]";
+        return "Produto{" + "id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco + '}';
     }
-//</editor-fold>
 
+//</editor-fold>
 }

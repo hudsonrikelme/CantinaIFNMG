@@ -6,13 +6,18 @@ package br.ifnmg.edu;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -32,8 +37,11 @@ public class Cliente implements Serializable {
 
     private String cpf;
 
-    // private List<Compra> compras;
-    
+    @OneToMany(mappedBy = "cliente",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<Compra> compras;
+
     private BigDecimal saldo;
 
     private Boolean auxilio;
@@ -41,9 +49,12 @@ public class Cliente implements Serializable {
     @Enumerated(EnumType.ORDINAL)
     private TipoCliente tipoCliente;
 
-    @Column(nullable = false)
     @OneToOne
     private Credencial credencial;
+
+    public Cliente() {
+        compras = new ArrayList<>();
+    }
 
     //<editor-fold defaultstate="collapsed" desc="Getter / Setter">
     public Long getId() {
@@ -101,6 +112,15 @@ public class Cliente implements Serializable {
     public void setCredencial(Credencial credencial) {
         this.credencial = credencial;
     }
+
+    public List<Compra> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(List<Compra> compras) {
+        this.compras = compras;
+    }
+
 //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Hash / Equals / ToString">
     @Override
