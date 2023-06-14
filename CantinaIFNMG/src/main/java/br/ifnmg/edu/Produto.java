@@ -8,44 +8,32 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 /**
  *
  * @author Lucas Freitas &lt;lpf1 at ifnmg.edu.br&gt;
  */
 @Entity
-public class Cliente implements Serializable {
+public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 65)
     private String nome;
 
-    private String cpf;
-
-    // private List<Compra> compras;
+    private String descricao;
     
-    private BigDecimal saldo;
+    @Column(precision = 5,
+            scale = 2)
+    private BigDecimal preco = BigDecimal.ZERO;
 
-    private Boolean auxilio;
 
-    @Enumerated(EnumType.ORDINAL)
-    private TipoCliente tipoCliente;
-
-    @Column(nullable = false)
-    @OneToOne
-    private Credencial credencial;
-
-    //<editor-fold defaultstate="collapsed" desc="Getter / Setter">
+    //<editor-fold defaultstate="collapsed" desc="Getters / Setters">
     public Long getId() {
         return id;
     }
@@ -62,45 +50,22 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public BigDecimal getSaldo() {
-        return saldo;
+    public BigDecimal getPreco() {
+        return preco;
     }
 
-    public void setSaldo(BigDecimal saldo) {
-        this.saldo = saldo;
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
     }
 
-    public Boolean getAuxilio() {
-        return auxilio;
-    }
-
-    public void setAuxilio(Boolean auxilio) {
-        this.auxilio = auxilio;
-    }
-
-    public TipoCliente getTipoCliente() {
-        return tipoCliente;
-    }
-
-    public void setTipoCliente(TipoCliente tipoCliente) {
-        this.tipoCliente = tipoCliente;
-    }
-
-    public Credencial getCredencial() {
-        return credencial;
-    }
-
-    public void setCredencial(Credencial credencial) {
-        this.credencial = credencial;
-    }
 //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Hash / Equals / ToString">
     @Override
@@ -113,10 +78,10 @@ public class Cliente implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cliente)) {
+        if (!(object instanceof Produto)) {
             return false;
         }
-        Cliente other = (Cliente) object;
+        Produto other = (Produto) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -125,15 +90,8 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "br.ifnmg.edu.Cliente[ id=" + id + " ]";
+        return "br.ifnmg.edu.Produto[ id=" + id + " ]";
     }
 //</editor-fold>
-
-    private enum TipoCliente {
-        CLIENTE,
-        GERENTE,
-        NUTRICIONISTA,
-        CAIXA;
-    }
 
 }
