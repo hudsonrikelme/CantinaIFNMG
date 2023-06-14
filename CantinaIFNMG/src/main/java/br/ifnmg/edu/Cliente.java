@@ -5,10 +5,15 @@
 package br.ifnmg.edu;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -19,9 +24,28 @@ public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 65)
+    private String nome;
+
+    private String cpf;
+
+    // private List<Compra> compras;
+    
+    private BigDecimal saldo;
+
+    private Boolean auxilio;
+
+    @Enumerated(EnumType.ORDINAL)
+    private TipoCliente tipoCliente;
+
+    @Column(nullable = false)
+    @OneToOne
+    private Credencial credencial;
+
+    //<editor-fold defaultstate="collapsed" desc="Getter / Setter">
     public Long getId() {
         return id;
     }
@@ -30,6 +54,55 @@ public class Cliente implements Serializable {
         this.id = id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public BigDecimal getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(BigDecimal saldo) {
+        this.saldo = saldo;
+    }
+
+    public Boolean getAuxilio() {
+        return auxilio;
+    }
+
+    public void setAuxilio(Boolean auxilio) {
+        this.auxilio = auxilio;
+    }
+
+    public TipoCliente getTipoCliente() {
+        return tipoCliente;
+    }
+
+    public void setTipoCliente(TipoCliente tipoCliente) {
+        this.tipoCliente = tipoCliente;
+    }
+
+    public Credencial getCredencial() {
+        return credencial;
+    }
+
+    public void setCredencial(Credencial credencial) {
+        this.credencial = credencial;
+    }
+//</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Hash / Equals / ToString">
     @Override
     public int hashCode() {
         int hash = 0;
@@ -54,5 +127,13 @@ public class Cliente implements Serializable {
     public String toString() {
         return "br.ifnmg.edu.Cliente[ id=" + id + " ]";
     }
-    
+//</editor-fold>
+
+    private enum TipoCliente {
+        CLIENTE,
+        GERENTE,
+        NUTRICIONISTA,
+        CAIXA;
+    }
+
 }
