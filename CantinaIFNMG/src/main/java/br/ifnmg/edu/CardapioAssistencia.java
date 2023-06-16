@@ -9,11 +9,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 /**
@@ -28,9 +31,11 @@ public class CardapioAssistencia implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private LocalDate dia;
-    
-    @ManyToMany(mappedBy = "pratos")
-    @JoinColumn
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(joinColumns = @JoinColumn(name = "prato_id"),
+            inverseJoinColumns = @JoinColumn(name = "cardapioAssitencia_id")
+    )
     private List<Prato> pratos;
 
     public CardapioAssistencia() {
@@ -41,7 +46,7 @@ public class CardapioAssistencia implements Serializable {
         this.dia = dia;
         this.pratos = pratos;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -65,12 +70,7 @@ public class CardapioAssistencia implements Serializable {
     public void setPratos(List<Prato> pratos) {
         this.pratos = pratos;
     }
-    
-    
 
-    
-    
-    
     @Override
     public int hashCode() {
         int hash = 3;
@@ -97,11 +97,4 @@ public class CardapioAssistencia implements Serializable {
         return "CardapioAssistencia{" + "id=" + id + ", dia=" + dia + ", pratos=" + pratos + '}';
     }
 
-    
-    
-    
-
-
-
-    
 }

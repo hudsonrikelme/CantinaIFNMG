@@ -6,13 +6,14 @@ package br.ifnmg.edu;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -31,8 +32,8 @@ public class Componente implements Serializable {
 
     private Float caloria;
 
-    @ManyToMany(mappedBy = "categoria")
-    @JoinColumn
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
     //<editor-fold defaultstate="collapsed" desc="Construtores">
