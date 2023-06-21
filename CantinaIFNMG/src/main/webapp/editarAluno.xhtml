@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="editForm">
+            <p:panelGrid columns="2"
+                         styleClass="ui-noborder"
+                         id="generalPanel">
+                <p:panelGrid
+                    id="editarAluno"
+                    columns="2"
+                    styleClass="ui-noborder">
+                    <p:outputLabel 
+                        value="Nome: "
+                        for="nome"/>
+                    <p:inputText value="#{gerenteBean.c.nome}"
+                                 id="nome"/>
+
+                    <p:outputLabel 
+                        value="CPF: "
+                        for="cpf"/>
+                    <p:inputText value="#{gerenteBean.c.cpf}"
+                                 id="cpf"/>
+
+                    <p:outputLabel value="Email: "
+                                   for="email"/>
+                    <p:inputText value="#{gerenteBean.cred.email}"
+                                 id="email"/>
+
+                    <p:outputLabel value="Senha: "
+                                   for="senha"/>
+                    <p:password id="senha" 
+                                value="#{gerenteBean.cred.senha}" 
+                                feedback="true"
+                                inline="true"/>
+
+                    <p:outputLabel value="Saldo: "
+                                   for="saldo"/>
+                    <p:inputNumber id="saldo"
+                                   value="#{gerenteBean.c.saldo}"
+                                   symbol="R$ "
+                                   symbolPosition="p"
+                                   decimalSeparator=","
+                                   thousandSeparator="." />
+
+                    <p:outputLabel value="Auxilio: "
+                                   for="auxilio"/>
+                    <p:selectBooleanCheckbox value="#{gerenteBean.c.auxilio}"
+                                             id="auxilio"/>
+
+                    <p:outputLabel value="Tipo de Conta: "
+                                   for="tipo"/>
+                    <p:selectOneListbox value="#{gerenteBean.tipoClienteSelecionado}"
+                                        id="tipo">
+                        <f:selectItems value="#{gerenteBean.tiposCliente}" var="tipo"
+                                       itemValue="#{tipo}" itemLabel="#{tipo.rotulo}"/>
+                    </p:selectOneListbox>
+
+                    <p:commandButton value="Salvar" action="#{gerenteBean.salvarCliente()}"/>
+                </p:panelGrid>
+
+                <p:dataTable var="cliente"
+                             widgetVar="clienteTabela"
+                             value="#{gerenteBean.clientes}"
+                             paginator="true"
+                             reflow="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,{ShowAll|'Todos'}"
+                             rows="10">
+
+                    <f:facet name="header">
+                        <div class="products-table-header">
+                            <span style="font-weight: bold">CLIENTES</span>
+                            <span class="filter-container ui-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <p:inputText id="globalFilter"
+                                             onchange="PF('clienteTabela').filter()" 
+                                             placeholder="Buscar" />
+                            </span>
+                        </div>
+                    </f:facet>
+
+                    <p:column headerText="Id">
+                        <h:outputText value="#{cliente.id}" />
+                    </p:column>
+
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{cliente.nome}" />
+                    </p:column>
+
+                    <p:column headerText="CPF">
+                        <h:outputText value="#{cliente.cpf}" />
+                    </p:column>
+
+                    <p:column headerText="Email">
+                        <h:outputText value="#{cliente.credencial.email}" />
+                    </p:column>
+
+                    <p:column headerText="Tipo de Conta">
+                        <h:outputText value="#{cliente.tipoCliente.rotulo}" />
+                    </p:column>
+
+                    <p:column>
+                        <p:commandButton value="Editar"
+                                         actionListener="#{gerenteBean.carregarCliente(cliente.id)}"
+                                         update="editForm"/>
+                        <p:commandButton value="Compras"
+                                         styleClass="ui-button-secondary"
+                                         action="#{gerenteBean.carregarCompras(cliente)}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>

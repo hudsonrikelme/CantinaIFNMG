@@ -14,6 +14,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,6 +39,7 @@ public class Cliente implements Serializable {
     private String cpf;
 
     @OneToMany(mappedBy = "cliente",
+            fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<Compra> compras;
 
@@ -48,12 +50,11 @@ public class Cliente implements Serializable {
     @Enumerated(EnumType.ORDINAL)
     private TipoCliente tipoCliente;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Credencial credencial;
 
     public Cliente() {
         compras = new ArrayList<>();
-        credencial = new Credencial();
     }
 
     //<editor-fold defaultstate="collapsed" desc="Getter / Setter">
@@ -122,9 +123,7 @@ public class Cliente implements Serializable {
     }
 
 //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="Hash / Equals / ToString">
-
     @Override
     public int hashCode() {
         int hash = 7;
@@ -153,11 +152,21 @@ public class Cliente implements Serializable {
     }
 //</editor-fold>
 
-    private enum TipoCliente {
-        CLIENTE,
-        GERENTE,
-        NUTRICIONISTA,
-        CAIXA;
+    public enum TipoCliente {
+        CLIENTE("Cliente"),
+        GERENTE("Gerente"),
+        NUTRICIONISTA("Nutricionista"),
+        CAIXA("Caixa");
+
+        private String rotulo;
+
+        private TipoCliente(String rotulo) {
+            this.rotulo = rotulo;
+        }
+
+        public String getRotulo() {
+            return rotulo;
+        }
     }
 
 }

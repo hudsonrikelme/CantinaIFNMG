@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +24,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
+@NamedQueries(
+        @NamedQuery(name = "Compra.findByCliente",
+                    query = "SELECT c FROM Compra c WHERE c.cliente = :cliente")
+)
 /**
  *
  * @author @Daniel Alves F.N.&lt;Daniel Aluno do IFNMG&gt;
@@ -40,12 +47,13 @@ public class Compra implements Serializable {
     private BigDecimal total = BigDecimal.ZERO;
 
     //cliente
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     //produtos
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER
+                ,cascade = CascadeType.ALL)
     @JoinTable(joinColumns = @JoinColumn(name = "compra_id"), inverseJoinColumns = @JoinColumn(name = "produto_id"))
     private List<Produto> produtos;
 
@@ -55,7 +63,7 @@ public class Compra implements Serializable {
     private LocalDate dia;
 
     @Enumerated(EnumType.ORDINAL)
-    private TipoPagamento tipoLogradouro;
+    private TipoPagamento tipoPagamento;
 
     public Compra() {
 
@@ -87,13 +95,13 @@ public class Compra implements Serializable {
         this.cliente = cliente;
     }
 
-//    public List<Produto> getProdutos() {
-//        return produtos;
-//    }
-//
-//    public void setProdutos(List<Produto> produtos) {
-//        this.produtos = produtos;
-//    }
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
     public Boolean getPago() {
         return pago;
     }
@@ -110,20 +118,13 @@ public class Compra implements Serializable {
         this.dia = dia;
     }
 
-    public TipoPagamento getTipoLogradouro() {
-        return tipoLogradouro;
+    public TipoPagamento getTipoPagamento() {
+        return tipoPagamento;
     }
 
-    public void setTipoLogradouro(TipoPagamento tipoLogradouro) {
-        this.tipoLogradouro = tipoLogradouro;
+    public void setTipoPagamento(TipoPagamento tipoLogradouro) {
+        this.tipoPagamento = tipoLogradouro;
     }
-
-    public void adicionarProduto(Produto p) {
-
-        produtos.add(p);
-        total.add(p.getPreco());
-    }
-
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="HashCode / Equals / ToString">
     @Override
@@ -144,23 +145,39 @@ public class Compra implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        
+
         return hashCode() == obj.hashCode();
     }
 
     @Override
     public String toString() {
 
-        return "Compra{" + "id=" + id + ", total=" + total + ", clientes=" + cliente.getNome() + ", produtos=" + produtos + ", pago=" + pago + ", dia=" + dia + ", tipoLogradouro=" + tipoLogradouro + '}';
+        return "Compra{" + "id=" + id + ", total=" + total + ", clientes=" + cliente.getNome() + ", produtos=" + produtos + ", pago=" + pago + ", dia=" + dia + ", tipoLogradouro=" + tipoPagamento + '}';
     }
 
     //</editor-fold>
+    
+    public void adicionarProduto(Produto p) {
+        total = total.add(p.getPreco());
+        produtos.add(p);
+    }
+
     public enum TipoPagamento {
-        CARTAO,
-        DINHEIRO,
-        PIX,
-        SALDO,
-        AUXILIO;
+        CARTAO("Cartão"),
+        DINHEIRO("Dinheiro"),
+        PIX("Pix"),
+        SALDO("Saldo"),
+        AUXILIO("Auxílio");
+
+        private String rotulo;
+
+        TipoPagamento(String rotulo) {
+            this.rotulo = rotulo;
+        }
+
+        public String getRotulo() {
+            return rotulo;
+        }
     }
 
 }
