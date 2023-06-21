@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +23,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
 
 /**
  *
@@ -58,7 +58,7 @@ public class Compra implements Serializable {
     private TipoPagamento tipoLogradouro;
 
     public Compra() {
-        
+
         produtos = new ArrayList();
     }
 
@@ -87,15 +87,13 @@ public class Compra implements Serializable {
         this.cliente = cliente;
     }
 
-    
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
-    }
-
+//    public List<Produto> getProdutos() {
+//        return produtos;
+//    }
+//
+//    public void setProdutos(List<Produto> produtos) {
+//        this.produtos = produtos;
+//    }
     public Boolean getPago() {
         return pago;
     }
@@ -120,38 +118,43 @@ public class Compra implements Serializable {
         this.tipoLogradouro = tipoLogradouro;
     }
 
+    public void adicionarProduto(Produto p) {
+
+        produtos.add(p);
+        total.add(p.getPreco());
+    }
+
     //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="hash e to string">
+    //<editor-fold defaultstate="collapsed" desc="HashCode / Equals / ToString">
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Compra)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Compra other = (Compra) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        
+        return hashCode() == obj.hashCode();
     }
 
     @Override
     public String toString() {
-        
-        
+
         return "Compra{" + "id=" + id + ", total=" + total + ", clientes=" + cliente.getNome() + ", produtos=" + produtos + ", pago=" + pago + ", dia=" + dia + ", tipoLogradouro=" + tipoLogradouro + '}';
     }
 
-    
     //</editor-fold>
-
     public enum TipoPagamento {
         CARTAO,
         DINHEIRO,

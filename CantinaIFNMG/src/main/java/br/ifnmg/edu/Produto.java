@@ -68,13 +68,11 @@ public class Produto implements Serializable {
 
 //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Hash / Equals / ToString">
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.nome);
-        hash = 79 * hash + Objects.hashCode(this.descricao);
-        hash = 79 * hash + Objects.hashCode(this.preco);
+        hash = 83 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -89,24 +87,9 @@ public class Produto implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Produto other = (Produto) obj;
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        if (!Objects.equals(this.descricao, other.descricao)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        
-        if(!Objects.equals(this.preco, other.preco)){
-            return false;
-        }
-
-        return (obj.hashCode() == this.hashCode());
+    
+        return obj.hashCode() == hashCode();
     }
-
     
 
     @Override
