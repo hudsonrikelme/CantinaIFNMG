@@ -27,6 +27,7 @@ public class Produto implements Serializable {
 
     private String nome;
 
+    @Column(length = 255)
     private String descricao;
 
     @Column(precision = 5,
