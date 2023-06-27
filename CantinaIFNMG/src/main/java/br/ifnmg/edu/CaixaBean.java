@@ -62,7 +62,6 @@ public class CaixaBean implements Serializable {
 
     public String adicionarProduto() {
         produtosSelecionados.add(produto);
-        produto = null;
         
         return "caixa?faces-redirect=true";
 
