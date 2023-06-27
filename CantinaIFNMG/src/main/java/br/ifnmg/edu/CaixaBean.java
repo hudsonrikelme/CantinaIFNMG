@@ -88,9 +88,6 @@ public class CaixaBean implements Serializable {
         produtoService.salvar(p2);
         produtoService.salvar(p3);
         produtos = produtoService.localizarTodos();
-        for (Produto p : produtos) {
-            System.out.println(p);
-        }
     }
 //    private void reset()
 //    {
