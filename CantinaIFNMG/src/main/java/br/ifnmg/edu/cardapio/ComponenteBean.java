@@ -1,4 +1,4 @@
-package br.ifnmg.edu;
+package br.ifnmg.edu.cardapio;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

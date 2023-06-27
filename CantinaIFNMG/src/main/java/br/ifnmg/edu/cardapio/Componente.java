@@ -2,48 +2,48 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package br.ifnmg.edu;
+package br.ifnmg.edu.cardapio;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Gustavo Rafael Nunes Durães &lt;grnd at aluno.ifnmg.edu.br&gt;
  */
 @Entity
-public class Prato implements Serializable {
+public class Componente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 255)
     private String nome;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable (joinColumns = @JoinColumn(name ="componente_id"),
-            inverseJoinColumns = @JoinColumn(name = "prato_id") )
-    private List<Componente> componentes;
+    private Float caloria;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 
     //<editor-fold defaultstate="collapsed" desc="Construtores">
-    public Prato() {
-        this.componentes = new ArrayList<>();
+    public Componente() {
     }
 
-    public Prato(String nome, List<Componente> componentes) {
+    public Componente(String nome, Float caloria, Categoria categoria) {
         this.nome = nome;
-        this.componentes = componentes;
+        this.caloria = caloria;
+        this.categoria = categoria;
     }
     //</editor-fold>
 
@@ -64,20 +64,28 @@ public class Prato implements Serializable {
         this.nome = nome;
     }
 
-    public List<Componente> getComponentes() {
-        return componentes;
+    public Float getCaloria() {
+        return caloria;
     }
 
-    public void setComponentes(List<Componente> componentes) {
-        this.componentes = componentes;
+    public void setCaloria(Float caloria) {
+        this.caloria = caloria;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Hashcode/Equals/toString">
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -97,7 +105,7 @@ public class Prato implements Serializable {
 
     @Override
     public String toString() {
-        return "Prato{" + "id=" + id + ", nome=" + nome + ", componentes=" + componentes + '}';
+        return "Ingrediente{" + "id=" + id + ", nome=" + nome + ", caloria=" + caloria + ", categoria=" + categoria + '}';
     }
     //</editor-fold>
 

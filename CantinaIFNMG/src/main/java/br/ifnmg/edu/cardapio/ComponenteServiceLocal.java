@@ -2,16 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/J2EE/EJB30/SessionLocal.java to edit this template
  */
-package br.ifnmg.edu;
+package br.ifnmg.edu.cardapio;
 
 import javax.ejb.Local;
 
 /**
  *
- * @author Lucas Flavio<lucasfgm at ifnmg.edu.br>
+ * @author Gustavo Rafael Nunes Durães &lt;grnd at aluno.ifnmg.edu.br&gt;
  */
 @Local
-public interface CategoriaServiceLocal {
+public interface ComponenteServiceLocal {
+
+    void salvar(Componente componente);
+
+    void findAll();
     
-    public void save(Categoria categoria);
 }
