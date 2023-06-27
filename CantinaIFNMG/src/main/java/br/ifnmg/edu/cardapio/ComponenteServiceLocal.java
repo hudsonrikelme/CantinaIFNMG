@@ -16,5 +16,5 @@ public interface ComponenteServiceLocal {
     void salvar(Componente componente);
 
     void findAll();
-    
+
 }

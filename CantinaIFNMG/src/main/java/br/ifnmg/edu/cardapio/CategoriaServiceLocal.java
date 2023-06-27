@@ -12,6 +12,10 @@ import javax.ejb.Local;
  */
 @Local
 public interface CategoriaServiceLocal {
-    
+
     public void save(Categoria categoria);
+
+    public void findAll();
+
+    public Categoria localizarPorId(Long id);
 }

@@ -18,11 +18,23 @@ public class CategoriaService implements CategoriaServiceLocal {
 
     @PersistenceContext
     private EntityManager entityManager;
-    
+
     @Override
     public void save(Categoria categoria) {
         entityManager.persist(categoria);
     }
-    
+
+    @Override
+    public void findAll() {
+
+        entityManager.createNamedQuery("Select distinct c from Categoria c", Categoria.class).getResultList();
+
+    }
+
+    @Override
+    public Categoria localizarPorId(Long id) {
+
+        return entityManager.find(Categoria.class, id);
+    }
 
 }
