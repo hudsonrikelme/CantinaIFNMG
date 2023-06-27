@@ -4,11 +4,12 @@
  */
 package br.ifnmg.edu;
 
+import br.ifnmg.edu.produto.ProdutoServiceLocal;
+import br.ifnmg.edu.produto.Produto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -64,7 +65,6 @@ public class CaixaBean implements Serializable {
         produtosSelecionados.add(produto);
         
         return "caixa?faces-redirect=true";
-
     }
 
     @PostConstruct

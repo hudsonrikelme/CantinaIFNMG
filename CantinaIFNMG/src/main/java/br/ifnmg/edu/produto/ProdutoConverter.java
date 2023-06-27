@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSF/JSFManagedBean.java to edit this template
  */
-package br.ifnmg.edu;
+package br.ifnmg.edu.produto;
 
-import javax.annotation.ManagedBean;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -46,6 +45,7 @@ public class ProdutoConverter implements javax.faces.convert.Converter<Produto> 
         if (produto == null) {
             return null;
         }
+        System.out.println(produto.getId().toString());
         return produto.getId().toString();
     }
 
