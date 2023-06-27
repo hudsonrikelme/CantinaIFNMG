@@ -8,6 +8,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,6 +30,24 @@ public class ProdutoService implements ProdutoServiceLocal {
         return em.createQuery("SELECT p FROM Produto p", Produto.class)
                 .getResultList();
     }
+
+    @Override
+    public List<Produto> localizarParteNome(String busca) {
+        Query q = em.createNamedQuery("Produto.findByFractionName", 
+                Produto.class);
+        q.setParameter("busca", busca);
+        
+        return q.getResultList();
+    }
+
+    @Override
+    public Produto localizarPorId(Long id) {
+        
+        return em.find(Produto.class, id);
+    }
+    
+    
+    
     
     
 

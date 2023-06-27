@@ -17,5 +17,9 @@ public interface ProdutoServiceLocal {
     void salvar(Produto p);
 
     List<Produto> localizarTodos();
+
+    List<Produto> localizarParteNome(String busca);
+
+    Produto localizarPorId(Long id);
     
 }

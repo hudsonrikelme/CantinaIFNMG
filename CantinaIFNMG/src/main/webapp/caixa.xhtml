@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Caixa</title>
+        <style>
+            .corpo{
+                padding-left: 10%;
+                padding-right: 10%;
+            }
+        </style>
+    </h:head>
+    <h:body class="corpo">
+        <h:form>
+            <p:panelGrid columns="2"
+                         styleClass="ui-noborder">
+                <p:panelGrid columns="2"
+                             styleClass="ui-noborder">
+                    <p:selectOneListbox id="escolherProduto" value="#{caixaBean.produto}"
+                                        converter="produtoConverter"
+                                        var="p"
+                                        filter="true"
+                                        filterMatchMode="contains">
+
+                        <f:selectItems value="#{caixaBean.produtos}" 
+                                       var="produto" 
+                                       itemLabel="#{produto.nome}" 
+                                       itemValue="#{produto}"/>
+                        <p:column>
+                            <h:outputText value="#{p.nome}"/>
+                        </p:column>
+                    </p:selectOneListbox>
+                    <p:dataTable var="produto" value="#{caixaBean.produtosSelecionados}">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{produto.id}" />
+                        </p:column>
+
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{produto.nome}" />
+                        </p:column>
+
+                        <p:column headerText="Descrição">
+                            <h:outputText value="#{produto.descricao}" />
+                        </p:column>
+
+                        <p:column headerText="Preço">
+                            <h:outputText value="#{produto.preco}" />
+                        </p:column>
+                    </p:dataTable>
+                    <h:commandButton value="Inserir" action="#{produtoBean.adicionarProduto()}"/>
+                </p:panelGrid>
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>
