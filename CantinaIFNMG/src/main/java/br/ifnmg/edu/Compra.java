@@ -53,7 +53,7 @@ public class Compra implements Serializable {
     private Cliente cliente;
 
     //produtos
-    @ManyToMany(fetch = FetchType.EAGER
+    @ManyToMany(fetch = FetchType.LAZY
                 ,cascade = CascadeType.ALL)
     @JoinTable(joinColumns = @JoinColumn(name = "compra_id"), inverseJoinColumns = @JoinColumn(name = "produto_id"))
     private List<Produto> produtos;
@@ -153,7 +153,14 @@ public class Compra implements Serializable {
     @Override
     public String toString() {
 
-        return "Compra{" + "id=" + id + ", total=" + total + ", clientes=" + cliente.getNome() + ", produtos=" + produtos + ", pago=" + pago + ", dia=" + dia + ", tipoLogradouro=" + tipoPagamento + '}';
+        return "Compra{" + "id=" + id + 
+                ", total=" + total +
+                ", clientes=" + cliente.getNome() + 
+                ", produtos=" + produtos + 
+                ", pago=" + pago + 
+                ", dia=" + dia +
+                ", tipoLogradouro=" + tipoPagamento + 
+                '}';
     }
 
     //</editor-fold>

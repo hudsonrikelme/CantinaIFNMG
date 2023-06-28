@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -22,7 +23,13 @@ public class CompraService implements CompraServiceLocal {
 
     @Override
     public void salvar(Compra c) {
-        em.persist(c);
+        if (em.contains(c)) {
+            em.persist(c);
+        } else if (c.getId() != null) {
+            em.merge(c);
+        } else {
+            em.merge(c);
+        }
     }
 
     // Add business logic below. (Right-click in editor and choose

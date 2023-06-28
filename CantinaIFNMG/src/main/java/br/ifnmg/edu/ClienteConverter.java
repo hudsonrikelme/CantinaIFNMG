@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSF/JSFManagedBean.java to edit this template
  */
-package br.ifnmg.edu.produto;
+package br.ifnmg.edu;
 
+import br.ifnmg.edu.produto.Produto;
+import br.ifnmg.edu.produto.ProdutoServiceLocal;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -14,25 +16,25 @@ import javax.inject.Inject;
  *
  * @author Lucas
  */
-@FacesConverter(value = "produtoConverter", managed = true)
+@FacesConverter(value = "clienteConverter", managed = true)
 @ApplicationScoped
-public class ProdutoConverter implements javax.faces.convert.Converter<Produto> {
+public class ClienteConverter implements javax.faces.convert.Converter<Cliente> {
 
     @Inject
-    private ProdutoServiceLocal produtoService;
+    private ClienteServiceLocal clienteService;
 
-    public ProdutoConverter() {
+    public ClienteConverter() {
     }
 
     @Override
-    public Produto getAsObject(
+    public Cliente getAsObject(
             FacesContext context,
             UIComponent component,
             String id) {
         if (id == null) {
             return null;
         }
-        return produtoService
+        return clienteService
                 .localizarPorId(Long.valueOf(id));
     }
 
@@ -40,12 +42,12 @@ public class ProdutoConverter implements javax.faces.convert.Converter<Produto> 
     public String getAsString(
             FacesContext context,
             UIComponent component,
-            Produto produto) {
-        if (produto == null) {
+            Cliente cliente) {
+        if (cliente == null) {
             return null;
         }
-        System.out.println(produto.getId().toString());
-        return produto.getId().toString();
+        
+        return cliente.getId().toString();
     }
 
 }

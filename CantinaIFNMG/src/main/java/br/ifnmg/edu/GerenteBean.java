@@ -98,47 +98,47 @@ public class GerenteBean implements Serializable {
     }
 //</editor-fold>
 
-    @PostConstruct
-    public void CargaDados()
-    {
-        Cliente c1 = new Cliente();
-        c1.setAuxilio(true);
-        c1.setCpf("111.222.333-44");
-        c1.setNome("Lucas");
-        c1.setSaldo(BigDecimal.valueOf(50.00));
-        c1.setTipoCliente(Cliente.TipoCliente.CLIENTE);
-        Credencial cre = new Credencial();
-        cre.setEmail("Lucas@gmail.com");
-        cre.setSenha("123456");
-        c1.setCredencial(cre);
-        clienteService.salvar(c1);
-        
-        Produto p1 = new Produto();
-        p1.setDescricao("Coxinha grande");
-        p1.setNome("Coxinha");
-        p1.setPreco(BigDecimal.valueOf(3.5));
-        
-        Produto p2 = new Produto();
-        p2.setDescricao("Refrigerante lata 350 ml");
-        p2.setNome("Refrigerante lata");
-        p2.setPreco(BigDecimal.valueOf(3.0));
-        
-        Produto p3 = new Produto();
-        p3.setDescricao("Bolo no pote 300 gramas");
-        p3.setNome("Bolo no pote");
-        p3.setPreco(BigDecimal.valueOf(8.0));
-        
-        
-        Compra compra = new Compra();
-        compra.setCliente(c1);
-        compra.setDia(LocalDate.now());
-        compra.setPago(true);
-        compra.adicionarProduto(p1);
-        compra.adicionarProduto(p2);
-        compra.adicionarProduto(p3);
-        compra.setTipoPagamento(Compra.TipoPagamento.DINHEIRO);
-        compraService.salvar(compra);
-    }
+//    @PostConstruct
+//    public void CargaDados()
+//    {
+//        Cliente c1 = new Cliente();
+//        c1.setAuxilio(true);
+//        c1.setCpf("111.222.333-44");
+//        c1.setNome("Lucas");
+//        c1.setSaldo(BigDecimal.valueOf(50.00));
+//        c1.setTipoCliente(Cliente.TipoCliente.CLIENTE);
+//        Credencial cre = new Credencial();
+//        cre.setEmail("Lucas@gmail.com");
+//        cre.setSenha("123456");
+//        c1.setCredencial(cre);
+//        clienteService.salvar(c1);
+//        
+//        Produto p1 = new Produto();
+//        p1.setDescricao("Coxinha grande");
+//        p1.setNome("Coxinha");
+//        p1.setPreco(BigDecimal.valueOf(3.5));
+//        
+//        Produto p2 = new Produto();
+//        p2.setDescricao("Refrigerante lata 350 ml");
+//        p2.setNome("Refrigerante lata");
+//        p2.setPreco(BigDecimal.valueOf(3.0));
+//        
+//        Produto p3 = new Produto();
+//        p3.setDescricao("Bolo no pote 300 gramas");
+//        p3.setNome("Bolo no pote");
+//        p3.setPreco(BigDecimal.valueOf(8.0));
+//        
+//        
+//        Compra compra = new Compra();
+//        compra.setCliente(c1);
+//        compra.setDia(LocalDate.now());
+//        compra.setPago(true);
+//        compra.adicionarProduto(p1);
+//        compra.adicionarProduto(p2);
+//        compra.adicionarProduto(p3);
+//        compra.setTipoPagamento(Compra.TipoPagamento.DINHEIRO);
+//        compraService.salvar(compra);
+//    }
     
     public String carregarCompras(Cliente c)
     {

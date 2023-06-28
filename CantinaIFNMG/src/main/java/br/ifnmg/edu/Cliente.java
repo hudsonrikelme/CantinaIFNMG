@@ -57,6 +57,15 @@ public class Cliente implements Serializable {
         compras = new ArrayList<>();
     }
 
+    public void adicionarCompra(Compra c) {
+        compras.add(c);
+    }
+    
+    public void cobrar(BigDecimal valor)
+    {
+        saldo = saldo.subtract(valor);
+    }
+
     //<editor-fold defaultstate="collapsed" desc="Getter / Setter">
     public Long getId() {
         return id;
@@ -148,10 +157,18 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "br.ifnmg.edu.Cliente[ id=" + id + " ]";
+        return "Cliente{"
+                + "id=" + id
+                + ", nome=" + nome
+                + ", cpf=" + cpf
+                + ", compras=" + compras
+                + ", saldo=" + saldo
+                + ", auxilio=" + auxilio
+                + ", tipoCliente=" + tipoCliente.getRotulo()
+                + '}';
     }
-//</editor-fold>
 
+//</editor-fold>
     public enum TipoCliente {
         CLIENTE("Cliente"),
         GERENTE("Gerente"),

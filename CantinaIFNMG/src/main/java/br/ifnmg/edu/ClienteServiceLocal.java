@@ -19,5 +19,10 @@ public interface ClienteServiceLocal {
     List<Cliente> localizarTodos();
 
     Cliente localizarPorId(Long id);
+
+    List<Cliente> localizarTodosComCompras();
+
+    Cliente localizarPorIdComCompra(Long id);
+
     
 }

@@ -23,7 +23,7 @@ public class ClienteService implements ClienteServiceLocal {
     public void salvar(Cliente c) {
         if (em.contains(c)) {
             em.persist(c);
-        } else if(c.getId() != null){
+        } else if (c.getId() != null) {
             em.merge(c);
         } else {
             em.merge(c);
@@ -41,4 +41,20 @@ public class ClienteService implements ClienteServiceLocal {
         return em.find(Cliente.class, id);
     }
 
+    @Override
+    public List<Cliente> localizarTodosComCompras() {
+        return em.createQuery("SELECT c FROM Cliente c left join fetch c.compras", Cliente.class)
+                .getResultList();
+    }
+
+    @Override
+    public Cliente localizarPorIdComCompra(Long id) {
+        return em.createQuery("SELECT c FROM Cliente c LEFT JOIN FETCH"
+                + " c.compras WHERE c.id = :id", Cliente.class)
+                .setParameter("id", id)
+                .getSingleResult();
+    }
+    
+    
+    
 }
