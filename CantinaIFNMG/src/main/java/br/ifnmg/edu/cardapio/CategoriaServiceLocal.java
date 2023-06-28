@@ -4,6 +4,7 @@
  */
 package br.ifnmg.edu.cardapio;
 
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -15,7 +16,9 @@ public interface CategoriaServiceLocal {
 
     public void save(Categoria categoria);
 
-    public void findAll();
-
     public Categoria localizarPorId(Long id);
+
+    List<Categoria> findAll();
+
+
 }

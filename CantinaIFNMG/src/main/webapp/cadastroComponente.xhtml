@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panelGrid columns="2"
+                         styleClass="ui-noborder">
+                
+                <!-- 
+                <p:outputLabel value="Nova Categoria: "/>
+                <p:inputText value="#{componenteBean.ct.nome}" id="ctnome"/>
+                
+                <p:commandButton value="Salvar" action="#{componenteBean.salvarCategoria()}"/>
+                
+                
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                
+                comment -->
+                
+                <p:outputLabel value="Nome: "/>
+                <p:inputText value="#{componenteBean.c.nome}" id="cnome"/>
+                
+                <p:outputLabel value="Calorias: " for="caloria"/>
+                <p:inputNumber id="caloria"
+                               value="#{componenteBean.c.caloria}"
+                               symbol=" cal"
+                               symbolPosition="s"/>
+                
+                
+                
+                <p:commandButton value="Salvar" action="#{componenteBean.salvarComponente()}"/>
+            </p:panelGrid>
+            
+        </h:form>
+    </h:body>
+</html>

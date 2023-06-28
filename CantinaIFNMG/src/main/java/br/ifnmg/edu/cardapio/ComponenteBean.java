@@ -6,7 +6,7 @@ package br.ifnmg.edu.cardapio;
  */
 
 import java.io.Serializable;
-import javax.annotation.PostConstruct;
+import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -22,33 +22,53 @@ public class ComponenteBean implements Serializable {
     @Inject
     private ComponenteServiceLocal componenteService;
     
-    private Componente componente;
+    @Inject
+    private CategoriaServiceLocal categoriaService;
+    
+    private Componente c;
+    private List<Categoria> categorias;
     
     public ComponenteBean() {
-        componente = new Componente();
+        c = new Componente();
     }
 
     //<editor-fold defaultstate="collapsed" desc="Getteres/Setteres">
     
 
-    public ComponenteServiceLocal getComponenteService() {
-        return componenteService;
+    public Componente getC() {
+        return c;
     }
 
-    public void setComponenteService(ComponenteServiceLocal componenteService) {
-        this.componenteService = componenteService;
+    public void setC(Componente c) {
+        this.c = c;
     }
 
-    public Componente getComponente() {
-        return componente;
+    public List<Categoria> getCategorias() {
+        return categorias;
     }
 
-    public void setComponente(Componente componente) {
-        this.componente = componente;
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
     }
+    
+    
+    
+    
     //</editor-fold>
     
-    @PostConstruct
+    
+    
+    public String salvarComponente(){
+        componenteService.salvar(c);
+        return "cadastroComponentes?faces-redirect=true";
+    }
+    
+    public void reset(){
+        c = new Componente();
+    }
+    
+    
+    /*@PostConstruct
     public void cargaDados(){
         //Criando categorias para teste
         Categoria a1 = new Categoria();
@@ -79,7 +99,7 @@ public class ComponenteBean implements Serializable {
         componenteService.salvar(c1);
         componenteService.salvar(c2);
         componenteService.salvar(c3);
-    }
+    }*/
     
     
     

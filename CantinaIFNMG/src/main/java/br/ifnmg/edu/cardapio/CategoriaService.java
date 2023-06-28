@@ -25,16 +25,15 @@ public class CategoriaService implements CategoriaServiceLocal {
     }
 
     @Override
-    public void findAll() {
-
-        entityManager.createNamedQuery("Select distinct c from Categoria c", Categoria.class).getResultList();
-
-    }
-
-    @Override
     public Categoria localizarPorId(Long id) {
 
         return entityManager.find(Categoria.class, id);
+    }
+
+    @Override
+    public List<Categoria> findAll() {
+        return entityManager.createNamedQuery("SELECT DISTINCT c FROM Categoria c",
+                Categoria.class).getResultList();
     }
 
 }
