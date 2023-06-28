@@ -33,6 +33,7 @@ public class CategoriaConverter implements javax.faces.convert.Converter<Categor
         if (id == null) {
             return null;
         }
+        System.out.println(ctService.localizarPorId(Long.valueOf(id)));
         return ctService.localizarPorId(Long.valueOf(id));
     }
     
@@ -44,7 +45,7 @@ public class CategoriaConverter implements javax.faces.convert.Converter<Categor
         if (categoria == null) {
             return null;
         }
-        //System.out.println(categoria.getId().toString());
-        return categoria.getNome();
+        System.out.println(categoria.getId().toString());
+        return categoria.getId().toString();
     }
 }
