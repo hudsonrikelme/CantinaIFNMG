@@ -43,7 +43,7 @@ public class ClienteService implements ClienteServiceLocal {
 
     @Override
     public List<Cliente> localizarTodosComCompras() {
-        return em.createQuery("SELECT c FROM Cliente c left join fetch c.compras", Cliente.class)
+        return em.createQuery("SELECT DISTINCT c FROM Cliente c left join fetch c.compras", Cliente.class)
                 .getResultList();
     }
 

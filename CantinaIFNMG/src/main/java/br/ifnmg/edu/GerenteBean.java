@@ -6,13 +6,10 @@ package br.ifnmg.edu;
 
 import br.ifnmg.edu.produto.Produto;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import javax.inject.Inject;
 
 /**
@@ -25,7 +22,7 @@ public class GerenteBean implements Serializable {
 
     @Inject
     ClienteServiceLocal clienteService;
-    
+
     @Inject
     CompraServiceLocal compraService;
 
@@ -139,16 +136,15 @@ public class GerenteBean implements Serializable {
 //        compra.setTipoPagamento(Compra.TipoPagamento.DINHEIRO);
 //        compraService.salvar(compra);
 //    }
-    
-    public String carregarCompras(Cliente c)
-    {
+    public String carregarCompras(Cliente c) {
         compras = compraService.localizarCompraPorCliente(c);
-        
-        return "comprasCliente";
+
+
+        return "comprasCliente?faces-redirect=true";
+
     }
-    
-    public String produtos(Compra c)
-    {
+
+    public String produtos(Compra c) {
         String produtos = new String();
         for (Produto produto : c.getProdutos()) {
             produtos += produto.getNome();
@@ -156,7 +152,7 @@ public class GerenteBean implements Serializable {
         }
         return produtos;
     }
-    
+
     public String salvarCliente() {
         c.setCredencial(cred);
         c.setTipoCliente(tipoClienteSelecionado);

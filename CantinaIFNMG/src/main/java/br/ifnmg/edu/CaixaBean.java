@@ -166,52 +166,9 @@ public class CaixaBean implements Serializable {
 
     @PostConstruct
     public void cargaProdutos() {
-        Produto p1 = new Produto();
-        p1.setDescricao("Coxinha grande");
-        p1.setNome("Coxinha");
-        p1.setPreco(BigDecimal.valueOf(3.5));
-
-        Produto p2 = new Produto();
-        p2.setDescricao("Refri lata");
-        p2.setNome("Refri lata");
-        p2.setPreco(BigDecimal.valueOf(3.5));
-
-        Produto p3 = new Produto();
-        p3.setDescricao("Suco grande");
-        p3.setNome("Suco");
-        p3.setPreco(BigDecimal.valueOf(3.5));
-
-        Cliente c1 = new Cliente();
-        c1.setAuxilio(true);
-        c1.setCpf("111.222.333-44");
-        c1.setNome("Lucas");
-        c1.setSaldo(BigDecimal.valueOf(50.00));
-        c1.setTipoCliente(Cliente.TipoCliente.CLIENTE);
-        Credencial cre = new Credencial();
-        cre.setEmail("Lucas@gmail.com");
-        cre.setSenha("123456");
-        c1.setCredencial(cre);
-        clienteService.salvar(c1);
-
-        Cliente c2 = new Cliente();
-        c2.setAuxilio(true);
-        c2.setCpf("555.666.777-88");
-        c2.setNome("Pedro");
-        c2.setSaldo(BigDecimal.valueOf(50.00));
-        c2.setTipoCliente(Cliente.TipoCliente.CLIENTE);
-        Credencial cre1 = new Credencial();
-        cre1.setEmail("Lucas@gmail.com");
-        cre1.setSenha("123456");
-        c2.setCredencial(cre);
-        clienteService.salvar(c2);
-
-        produtoService.salvar(p1);
-        produtoService.salvar(p2);
-        produtoService.salvar(p3);
-
         produtos = produtoService.localizarTodos();
         clientes = clienteService.localizarTodosComCompras();
-        System.out.println(clientes);
+//        System.out.println(clientes);
 
     }
 

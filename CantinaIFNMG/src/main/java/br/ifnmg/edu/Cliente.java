@@ -169,6 +169,7 @@ public class Cliente implements Serializable {
     }
 
 //</editor-fold>
+    
     public enum TipoCliente {
         CLIENTE("Cliente"),
         GERENTE("Gerente"),

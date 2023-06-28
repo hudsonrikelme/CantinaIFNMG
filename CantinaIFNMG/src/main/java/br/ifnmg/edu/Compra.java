@@ -30,7 +30,8 @@ import javax.persistence.NamedQuery;
 
 @NamedQueries(
         @NamedQuery(name = "Compra.findByCliente",
-                    query = "SELECT c FROM Compra c WHERE c.cliente = :cliente")
+                    query = "SELECT c FROM Compra c left join fetch c.produtos "
+                            + "WHERE c.cliente = :cliente")
 )
 /**
  *
@@ -48,7 +49,8 @@ public class Compra implements Serializable {
     private BigDecimal total = BigDecimal.ZERO;
 
     //cliente
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL
+            ,fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 

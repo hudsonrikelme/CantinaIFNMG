@@ -32,6 +32,7 @@ public class Credencial implements Serializable {
 
     @OneToOne(mappedBy = "credencial")
     private Cliente cliente;
+    
 
     //<editor-fold defaultstate="collapsed" desc="Getters / Setters">
     public Long getId() {
