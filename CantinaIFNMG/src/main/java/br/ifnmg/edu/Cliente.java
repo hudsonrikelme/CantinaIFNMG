@@ -65,6 +65,10 @@ public class Cliente implements Serializable {
     {
         saldo = saldo.subtract(valor);
     }
+    
+    public void adicionarSaldo(BigDecimal valor){
+        saldo = saldo.add(valor);
+    }
 
     //<editor-fold defaultstate="collapsed" desc="Getter / Setter">
     public Long getId() {

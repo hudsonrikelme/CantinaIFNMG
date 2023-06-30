@@ -8,7 +8,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 /**
  *
@@ -35,9 +34,22 @@ public class CompraService implements CompraServiceLocal {
     // "Insert Code > Add Business Method")
     @Override
     public List<Compra> localizarCompraPorCliente(Cliente cliente) {
-        TypedQuery tq = em.createNamedQuery("Compra.findByCliente", Compra.class);
-        tq.setParameter("cliente", cliente);
-        return tq.getResultList();
+        
+        List<Compra> compras = 
+                em.createQuery("SELECT DISTINCT c FROM Compra c "
+                        + "left join fetch c.produtos"
+                + " WHERE c.cliente = :cliente",Compra.class)
+                .setParameter("cliente", cliente)
+                .getResultList();
+        
+        compras = em.createQuery("SELECT DISTINCT c FROM Compra c "
+                        + "left join fetch c.produtos"
+                + " WHERE c IN :compra",
+                Compra.class)
+                .setParameter("compra", compras)
+                .getResultList();
+        
+        return compras;
     }
 
 }

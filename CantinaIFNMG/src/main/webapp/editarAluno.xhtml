@@ -5,13 +5,13 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Cadastro Aluno</title>
-        
+        <title>Cadastro Aluno</title>        
     </h:head>
     <h:body>
         <h:form id="editForm">
-            <h:commandLink action="caixa?faces-redirect=true" value="Caixa" />
-            
+            <h:commandLink action="caixa?faces-redirect=true"
+                           value="Caixa"/>
+
             <p:panelGrid columns="2"
                          styleClass="ui-noborder"
                          id="generalPanel">
@@ -77,17 +77,17 @@
                              rowsPerPageTemplate="5,10,{ShowAll|'Todos'}"
                              rows="10">
 
-<!--                    <f:facet name="header">
-                        <div class="products-table-header">
-                            <span style="font-weight: bold">CLIENTES</span>
-                            <span class="filter-container ui-input-icon-left">
-                                <i class="pi pi-search"></i>
-                                <p:inputText id="globalFilter"
-                                             onchange="PF('clienteTabela').filter()" 
-                                             placeholder="Buscar" />
-                            </span>
-                        </div>
-                    </f:facet>-->
+                    <!--                    <f:facet name="header">
+                                            <div class="products-table-header">
+                                                <span style="font-weight: bold">CLIENTES</span>
+                                                <span class="filter-container ui-input-icon-left">
+                                                    <i class="pi pi-search"></i>
+                                                    <p:inputText id="globalFilter"
+                                                                 onchange="PF('clienteTabela').filter()" 
+                                                                 placeholder="Buscar" />
+                                                </span>
+                                            </div>
+                                        </f:facet>-->
 
                     <p:column headerText="Id">
                         <h:outputText value="#{cliente.id}" />

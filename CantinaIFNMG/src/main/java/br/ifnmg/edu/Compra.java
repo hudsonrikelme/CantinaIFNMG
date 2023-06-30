@@ -25,14 +25,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 
-@NamedQueries(
-        @NamedQuery(name = "Compra.findByCliente",
-                    query = "SELECT c FROM Compra c left join fetch c.produtos "
-                            + "WHERE c.cliente = :cliente")
-)
 /**
  *
  * @author @Daniel Alves F.N.&lt;Daniel Aluno do IFNMG&gt;
@@ -49,15 +42,17 @@ public class Compra implements Serializable {
     private BigDecimal total = BigDecimal.ZERO;
 
     //cliente
-    @ManyToOne(cascade = CascadeType.ALL
-            ,fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL,
+             fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     //produtos
-    @ManyToMany(fetch = FetchType.LAZY
-                ,cascade = CascadeType.ALL)
-    @JoinTable(joinColumns = @JoinColumn(name = "compra_id"), inverseJoinColumns = @JoinColumn(name = "produto_id"))
+    @ManyToMany(fetch = FetchType.LAZY,
+             cascade = CascadeType.ALL)
+    @JoinTable(joinColumns = @JoinColumn(name = "compra_id"),
+            inverseJoinColumns = @JoinColumn(name = "produto_id")
+    )
     private List<Produto> produtos;
 
     private Boolean pago = false;
@@ -105,6 +100,7 @@ public class Compra implements Serializable {
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
     }
+
     public Boolean getPago() {
         return pago;
     }
@@ -128,6 +124,7 @@ public class Compra implements Serializable {
     public void setTipoPagamento(TipoPagamento tipoLogradouro) {
         this.tipoPagamento = tipoLogradouro;
     }
+
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="HashCode / Equals / ToString">
     @Override
@@ -155,18 +152,17 @@ public class Compra implements Serializable {
     @Override
     public String toString() {
 
-        return "Compra{" + "id=" + id + 
-                ", total=" + total +
-                ", clientes=" + cliente.getNome() + 
-                ", produtos=" + produtos + 
-                ", pago=" + pago + 
-                ", dia=" + dia +
-                ", tipoLogradouro=" + tipoPagamento + 
-                '}';
+        return "Compra{" + "id=" + id
+                + ", total=" + total
+                + ", clientes=" + cliente.getNome()
+                + ", produtos=" + produtos
+                + ", pago=" + pago
+                + ", dia=" + dia
+                + ", tipoLogradouro=" + tipoPagamento
+                + '}';
     }
 
     //</editor-fold>
-    
     public void adicionarProduto(Produto p) {
         total = total.add(p.getPreco());
         produtos.add(p);
