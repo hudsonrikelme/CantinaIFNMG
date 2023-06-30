@@ -4,9 +4,8 @@
  */
 package br.ifnmg.edu.cardapio;
 
+
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.FacesConverter;
@@ -14,41 +13,41 @@ import javax.inject.Inject;
 
 /**
  *
- * @author gusta
+ * @author Gustavo Rafael Nunes Durães &lt;grnd at aluno.ifnmg.edu.br&gt;
  */
-@FacesConverter(value = "pratoConverter", managed = true)
+@FacesConverter(value = "componenteConverter", managed = true)
 @ApplicationScoped
-public class PratoConverter implements javax.faces.convert.Converter<Prato>{
+public class ComponenteConverter implements javax.faces.convert.Converter<Componente> {
 
     @Inject
-    private PratoServiceLocal pratoService;
+    private ComponenteServiceLocal componenteService;
     
-    public PratoConverter() {
+    public ComponenteConverter() {
     }
     
+    
     @Override
-    public Prato getAsObject(
+    public Componente getAsObject(
             FacesContext context,
             UIComponent component,
             String id) {
         if (id == null) {
             return null;
         }
-        System.out.println(pratoService.localizarPorId(Long.valueOf(id)));
-        return pratoService.localizarPorId(Long.valueOf(id));
+        System.out.println(componenteService.localizarPorID(Long.valueOf(id)));
+        return componenteService.localizarPorID(Long.valueOf(id));
     }
     
     @Override
     public String getAsString(
             FacesContext context,
             UIComponent component,
-            Prato prato) {
-        if (prato == null) {
+            Componente comp) {
+        if (comp == null) {
             return null;
         }
-        System.out.println(prato.getId().toString());
-        return prato.getId().toString();
+        System.out.println(comp.getId().toString());
+        return comp.getId().toString();
     }
-    
-    
 }
+

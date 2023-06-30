@@ -13,6 +13,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
-        
+        <h:form>
+            <h5>Selecione os componentes</h5>
+            <p:selectManyMenu id="advanced" value="#{pratoBean.componentes}"
+                              converter="#{componenteConverter}"
+                              var="c" 
+                              filter="true" 
+                              filterMatchMode="contains" 
+                              showCheckbox="true" 
+                              styleClass="manymenu-advanced">
+                <f:selectItems value="#{pratoBean.componentes}" 
+                               var="componente" 
+                               itemLabel="#{componente.nome}"
+                               itemValue="#{componente.id}"/>
+            </p:selectManyMenu>
+        </h:form>
     </h:body>
 </html>

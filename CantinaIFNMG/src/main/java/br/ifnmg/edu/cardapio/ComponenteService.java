@@ -26,8 +26,14 @@ public class ComponenteService implements ComponenteServiceLocal {
 
     @Override
     public List<Componente> findAll() {
-       return en.createNamedQuery("SELECT DISTINCT c FROM Componente c",
+       return en.createQuery("SELECT DISTINCT c FROM Componente c",
                 Componente.class).getResultList();
     }
+
+    @Override
+    public Componente localizarPorID(Long id) {
+        return en.find(Componente.class, id);
+    }
+    
     
 }

@@ -15,13 +15,14 @@ import javax.inject.Inject;
  *
  * @author gusta
  */
-@Named(value = "PratoBean")
+@Named(value = "pratoBean")
 @RequestScoped
 public class PratoBean {
 
     @Inject
     private PratoServiceLocal pratoService;
     
+    @Inject
     private ComponenteServiceLocal componenteService;
 
     private List<Componente> componentes; 
@@ -60,6 +61,7 @@ public class PratoBean {
     
     @PostConstruct
     public void carregarComponentes(){
+        System.out.println(componenteService.findAll());
         this.componentes = componenteService.findAll();
     }
     

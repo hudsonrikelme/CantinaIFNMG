@@ -18,4 +18,6 @@ public interface ComponenteServiceLocal {
 
     List<Componente> findAll();
 
+    Componente localizarPorID(Long id);
+
 }
