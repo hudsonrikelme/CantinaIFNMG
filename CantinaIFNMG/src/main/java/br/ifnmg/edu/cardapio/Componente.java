@@ -32,7 +32,7 @@ public class Componente implements Serializable {
 
     private Float caloria;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
@@ -105,7 +105,7 @@ public class Componente implements Serializable {
 
     @Override
     public String toString() {
-        return "Ingrediente{" + "id=" + id + ", nome=" + nome + ", caloria=" + caloria + ", categoria=" + categoria + '}';
+        return "Componente{" + "id=" + id + ", nome=" + nome + ", caloria=" + caloria + ", categoria=" + categoria + '}';
     }
     //</editor-fold>
 

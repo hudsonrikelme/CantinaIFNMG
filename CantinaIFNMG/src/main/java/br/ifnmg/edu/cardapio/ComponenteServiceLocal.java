@@ -4,6 +4,7 @@
  */
 package br.ifnmg.edu.cardapio;
 
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -15,6 +16,6 @@ public interface ComponenteServiceLocal {
 
     void salvar(Componente componente);
 
-    void findAll();
+    List<Componente> findAll();
 
 }

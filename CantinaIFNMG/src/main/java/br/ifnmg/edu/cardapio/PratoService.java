@@ -4,6 +4,7 @@
  */
 package br.ifnmg.edu.cardapio;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,9 +25,17 @@ public class PratoService implements PratoServiceLocal {
     }
    
     @Override
-    public void findAll() {
-        entityManager.createNamedQuery("Select distinct p from Prato p", Prato.class).getResultList();
+    public List<Prato> findAll() {
+        return entityManager.createQuery("SELECT DISTINCT p FROM Prato p", 
+                Prato.class).getResultList();
     }
+
+    @Override
+    public Prato localizarPorId(Long id) {
+        return entityManager.find(Prato.class, id);
+    }
+    
+    
     
     
 }

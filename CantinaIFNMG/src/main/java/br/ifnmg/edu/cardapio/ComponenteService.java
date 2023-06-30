@@ -4,6 +4,7 @@
  */
 package br.ifnmg.edu.cardapio;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,8 +25,9 @@ public class ComponenteService implements ComponenteServiceLocal {
     }
 
     @Override
-    public void findAll() {
-        en.createNamedQuery("Select distinct c from Componente c",Componente.class).getResultList();
+    public List<Componente> findAll() {
+       return en.createNamedQuery("SELECT DISTINCT c FROM Componente c",
+                Componente.class).getResultList();
     }
     
 }

@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Cadastrar Componentes e Categorias</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
@@ -40,5 +40,19 @@
             </p:panelGrid>
 
         </h:form>
+        
+        <h:form>
+            <p:panelGrid columns="2"
+                         styleClass="ui-noborder">
+
+                <p:outputLabel value="Nova categoria: "/>
+                <p:inputText value="#{categoriaBean.ct.nome}" id="ctnome"/>
+
+                <p:commandButton value="Salvar" action="#{categoriaBean.salvarCategoria()}"/>
+            </p:panelGrid>
+
+        </h:form>
+        
+        
     </h:body>
 </html>

@@ -31,7 +31,7 @@ public class Prato implements Serializable {
 
     private String nome;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable (joinColumns = @JoinColumn(name ="componente_id"),
             inverseJoinColumns = @JoinColumn(name = "prato_id") )
     private List<Componente> componentes;

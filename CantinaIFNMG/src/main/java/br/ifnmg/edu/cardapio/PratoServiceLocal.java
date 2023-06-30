@@ -4,6 +4,7 @@
  */
 package br.ifnmg.edu.cardapio;
 
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -15,6 +16,8 @@ public interface PratoServiceLocal {
     
     public void save(Prato prato);
     
-    public void findAll();
+    public List<Prato> findAll();
+
+    Prato localizarPorId(Long id);
     
 }
