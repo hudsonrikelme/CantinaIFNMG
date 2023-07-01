@@ -32,6 +32,6 @@ public interface DataServiceBeanLocal {
 
 //    public Credencial criaCredencial(Cliente cliente, String email, String senha, Credencial.TipoCliente tipoCliente);
 
-    public Credencial criaCredencial(Cliente cliente, String email, String senha);
+    public Credencial criaCredencial(Cliente cliente, String email, String senha, Credencial.TipoCliente tipoCliente);
     
 }

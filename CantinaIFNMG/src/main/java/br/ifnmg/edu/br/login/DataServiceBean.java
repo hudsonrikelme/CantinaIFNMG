@@ -3,6 +3,7 @@ package br.ifnmg.edu.br.login;
 import br.ifnmg.edu.Cliente;
 import br.ifnmg.edu.Credencial;
 import br.ifnmg.edu.br.login.DataServiceBeanLocal;
+import br.ifnmg.edu.compra.Compra;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,10 +34,14 @@ public class DataServiceBean
      * @param cliente
      * @param email
      * @param senha
+     * @param tipoCliente
      * @return 
      */
     @Override
-    public Credencial criaCredencial(Cliente cliente, String email, String senha) {
+    public Credencial criaCredencial(Cliente cliente,
+            String email,
+            String senha,
+            Credencial.TipoCliente tipoCliente) {
 
         Map<String, String> parameters = new HashMap<>();
         parameters.put("Pbkdf2PasswordHash.Iterations", "3071");
@@ -48,6 +53,7 @@ public class DataServiceBean
                 email, 
                 passwordHasher.generate(senha.toCharArray()), 
                 cliente);
+        novaCredencial.setTipoCliente(tipoCliente);
         cliente.setCredencial(novaCredencial);     
 
         em.persist(novaCredencial);

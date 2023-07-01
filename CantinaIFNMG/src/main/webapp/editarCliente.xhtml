@@ -5,7 +5,9 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Cadastro Aluno</title>        
+        <title>Editar Cliente</title>   
+        <h:outputScript name="jquery/jquery-plugins.js" library="primefaces"/>
+        <h:outputScript name="jquery/jquery.js" library="primefaces"/>
     </h:head>
     <h:body>
         <h:form id="editForm">
@@ -31,18 +33,6 @@
                     <p:inputText value="#{gerenteBean.c.cpf}"
                                  id="cpf"/>
 
-                    <p:outputLabel value="Email: "
-                                   for="email"/>
-                    <p:inputText value="#{gerenteBean.cred.email}"
-                                 id="email"/>
-
-                    <p:outputLabel value="Senha: "
-                                   for="senha"/>
-                    <p:password id="senha" 
-                                value="#{gerenteBean.cred.senha}" 
-                                feedback="true"
-                                inline="true"/>
-
                     <p:outputLabel value="Saldo: "
                                    for="saldo"/>
                     <p:inputNumber id="saldo"
@@ -57,16 +47,9 @@
                     <p:selectBooleanCheckbox value="#{gerenteBean.c.auxilio}"
                                              id="auxilio"/>
 
-                    <p:outputLabel value="Tipo de Conta: "
-                                   for="tipo"/>
-                    <p:selectOneListbox value="#{gerenteBean.tipoClienteSelecionado}"
-                                        id="tipo">
-                        <f:selectItems value="#{gerenteBean.tiposCliente}" var="tipo"
-                                       itemValue="#{tipo}" itemLabel="#{tipo.rotulo}"/>
-                    </p:selectOneListbox>
-
                     <p:commandButton value="Salvar" action="#{gerenteBean.salvarCliente()}"/>
                 </p:panelGrid>
+
 
                 <p:dataTable var="cliente"
                              widgetVar="clienteTabela"
@@ -110,12 +93,17 @@
                     </p:column>
 
                     <p:column>
+
                         <p:commandButton value="Editar"
                                          actionListener="#{gerenteBean.carregarCliente(cliente.id)}"
                                          update="editForm"/>
+
                         <p:commandButton value="Compras"
                                          styleClass="ui-button-secondary"
-                                         action="#{gerenteBean.carregarCompras(cliente)}"/>
+                                         action="#{gerenteBean.carregarCompras(cliente)}"
+                                         update="semCompra"/>
+
+                        <p:growl id="semCompra" showDetail="true" />
                     </p:column>
                 </p:dataTable>
             </p:panelGrid>

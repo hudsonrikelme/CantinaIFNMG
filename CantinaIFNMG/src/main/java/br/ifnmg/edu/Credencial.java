@@ -44,7 +44,7 @@ public class Credencial implements Serializable {
     private String email;
 
     @Enumerated(EnumType.STRING)
-    private TipoCliente tipoCliente = TipoCliente.GERENTE;
+    private TipoCliente tipoCliente;
 
     @OneToOne(mappedBy = "credencial" ,
                 cascade = CascadeType.ALL)

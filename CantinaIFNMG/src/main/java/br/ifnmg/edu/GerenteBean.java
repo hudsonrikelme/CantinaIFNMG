@@ -34,8 +34,8 @@ public class GerenteBean implements Serializable {
 
     private Cliente c;
     private Credencial cred;
-    private List<Cliente.TipoCliente> tiposCliente;
-    private Cliente.TipoCliente tipoClienteSelecionado;
+//    private List<Cliente.TipoCliente> tiposCliente;
+//    private Cliente.TipoCliente tipoClienteSelecionado;
     private List<Cliente> clientes;
     private List<Compra> compras;
 
@@ -44,7 +44,7 @@ public class GerenteBean implements Serializable {
      */
     public GerenteBean() {
         c = new Cliente();
-        tiposCliente = Arrays.asList(Cliente.TipoCliente.values());
+//        tiposCliente = Arrays.asList(Cliente.TipoCliente.values());
         cred = new Credencial();
     }
 
@@ -84,21 +84,21 @@ public class GerenteBean implements Serializable {
         this.cred = cred;
     }
 
-    public List<Cliente.TipoCliente> getTiposCliente() {
-        return tiposCliente;
-    }
-
-    public void setTiposCliente(List<Cliente.TipoCliente> tiposCliente) {
-        this.tiposCliente = tiposCliente;
-    }
-
-    public Cliente.TipoCliente getTipoClienteSelecionado() {
-        return tipoClienteSelecionado;
-    }
-
-    public void setTipoClienteSelecionado(Cliente.TipoCliente tipoClienteSelecionado) {
-        this.tipoClienteSelecionado = tipoClienteSelecionado;
-    }
+//    public List<Cliente.TipoCliente> getTiposCliente() {
+//        return tiposCliente;
+//    }
+//
+//    public void setTiposCliente(List<Cliente.TipoCliente> tiposCliente) {
+//        this.tiposCliente = tiposCliente;
+//    }
+//
+//    public Cliente.TipoCliente getTipoClienteSelecionado() {
+//        return tipoClienteSelecionado;
+//    }
+//
+//    public void setTipoClienteSelecionado(Cliente.TipoCliente tipoClienteSelecionado) {
+//        this.tipoClienteSelecionado = tipoClienteSelecionado;
+//    }
 //</editor-fold>
 
     public String carregarCompras(Cliente c) {
@@ -147,7 +147,7 @@ public class GerenteBean implements Serializable {
             Cliente cliente = clienteService.localizarPorId(id);
             c = cliente;
             cred = cliente.getCredencial();
-            tipoClienteSelecionado = c.getTipoCliente();
+//            tipoClienteSelecionado = c.getTipoCliente();
             return c;
         } else {
             return null;
