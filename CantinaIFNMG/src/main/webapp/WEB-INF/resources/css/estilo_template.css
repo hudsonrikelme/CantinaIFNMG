@@ -8,7 +8,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 
 *{
-   margin: 0px;
+    margin: 0px;
 }
 
 body{
@@ -25,37 +25,44 @@ body{
 }
 
 .bodyMeio{
-    padding: 0% 20% 0% 20%;    /*isso aqui pode sair se preciso*/ 
-/*    margin-bottom: 80px;*/
+    padding: 0% 20% 0% 20%;    /*isso aqui pode sair se preciso*/
     background-color: rgba(0, 0, 0, 0.65);
-    padding-top: 50px;
+    padding-top: 200px;
     padding-bottom: 80px;
-    /*min-height: 900px;*/
     min-height: 100vh;
-        
+    /*height: 2000px;*/
+
 }
 
 .centraliza{
 
     padding: 0% 20% 0% 20%;
-/*    margin-bottom: 80px;*/
     margin: auto;
-
 }
 
 .tarjapretamenu{
-/*    display: flex;
-    align-items: center;*/
+
+    position: absolute;
+    top: 300px;
+    width: 100%;
+    height: 50px;
+    background-color: #f1f1f1;
+    transition: top 0.3s ease;
+
     background-color: black;
     padding: 30px;
-/*    margin-bottom: 40px;*/
-/*    margin-top: 5px;*/
+}
+
+.tarjapretamenu.fixed {
+    position: fixed;
+    top: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 header {
-    /*    background-color: #333;*/
     text-align: center;
     background-color: rgba(0, 0, 0, 0.9);
+    height: 300px;
 }
 
 footer {
@@ -67,7 +74,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60px; /* Altura do footer */
+    height: 60px;
 }
 
 nav ul {
@@ -92,8 +99,8 @@ nav li:last-child {
 }
 
 nav li a {
-    font-family: "Oswald", sans-serif; /* Substitua "Nome da Fonte" pela fonte desejada */
-    font-size: 16px; /* Tamanho da letra em pixels */
+    font-family: "Oswald", sans-serif;
+    font-size: 16px;
     font-weight: 600;
     color: #fff;
     text-decoration: none;
@@ -122,12 +129,13 @@ nav li a:hover::before {
     margin: 0 auto;
 }
 
+/*Descartamos essa ideias aqui*/
 .overlayy {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Ajuste o valor do alfa para ajustar a intensidade do escurecimento */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: -1;
 }

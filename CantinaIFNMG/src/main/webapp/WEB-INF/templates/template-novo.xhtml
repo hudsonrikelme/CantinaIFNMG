@@ -13,26 +13,28 @@
     <h:body>
         <div>
 
+
+
             <header id="header">
 
                 <!--                <h:graphicImage  id="logo" library="img" name="logoCantina.png"/>-->
                 <img src="#{request.contextPath}/resources/img/logoCantina.png" alt="Logo da Cantina" style="max-height: 180px; margin-top: 20px;" />
 
-
+                <div class="tarjapretamenu" id="tarjapretamenu">
+                    <div class="centraliza">    
+                        <nav>
+                            <ul>
+                                <li><a href="#">Pagina1</a></li>
+                                <li><a href="#">Pagina2</a></li>
+                                <li><a href="#">Login</a></li>
+                                <li><a href="#">Cadastro</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
 
                 <ui:insert name="top"></ui:insert>
-                <div class="tarjapretamenu">
-                    <div class="centraliza">    
-                <nav>
-                    <ul>
-                        <li><a href="#">Pagina1</a></li>
-                        <li><a href="#">Pagina2</a></li>
-                        <li><a href="#">Login</a></li>
-                        <li><a href="#">Cadastro</a></li>
-                    </ul>
-                </nav>
-                </div>
-                </div>
+
             </header>
         </div>
 
@@ -52,6 +54,19 @@
             </div>
         </footer>
 
+
+        <script>
+            window.addEventListener('scroll', function () {
+                var menu = document.getElementById('tarjapretamenu');
+                var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (scrollPosition >= 300) {
+                    menu.classList.add('fixed');
+                } else {
+                    menu.classList.remove('fixed');
+                }
+            });
+        </script>
 
     </h:body>
 
