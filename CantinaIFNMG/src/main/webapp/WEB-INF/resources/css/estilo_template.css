@@ -13,7 +13,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 body{
 
-    background-image: url('#{request.contextPath}/resources/img/login.jpg');
+    /*background-image: url('#{request.contextPath}/resources/img/login.jpg');*/
+    background-color: green;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -25,13 +26,31 @@ body{
 }
 
 .bodyMeio{
-    padding: 0% 20% 0% 20%;    /*isso aqui pode sair se preciso*/
-    background-color: rgba(0, 0, 0, 0.65);
+    padding: 0% 5% 0% 5%;    /*isso aqui pode sair se preciso*/
+    /*background-color: rgba(0, 0, 0, 0.65);*/
     padding-top: 200px;
     padding-bottom: 80px;
     min-height: 100vh;
     /*height: 2000px;*/
 
+}
+
+.bbm{
+    
+    background-image: url('#{request.contextPath}/resources/img/login.jpg');
+    /*background-color: white;*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+    
+     padding: 0% 5% 0% 5%;    /*isso aqui pode sair se preciso*/
+    /*background-color: rgba(0, 0, 0, 0.65);*/
+    padding-top: 200px;
+    padding-bottom: 80px;
+    min-height: 100vh;
+    /*height: 2000px;*/
+    
 }
 
 .centraliza{
@@ -47,7 +66,7 @@ body{
     width: 100%;
     height: 50px;
     background-color: #f1f1f1;
-    transition: top 0.3s ease;
+    transition: top 0.0s ease;
 
     background-color: black;
     padding: 30px;
