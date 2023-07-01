@@ -4,6 +4,7 @@
  */
 package br.ifnmg.edu.cardapio;
 
+import java.time.LocalDate;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -34,6 +35,18 @@ public class CardapioAssistenciaService implements CardapioAssistenciaServiceLoc
     public CardapioAssistencia localizarPorId(Long id) {
         return entityManager.find(CardapioAssistencia.class, id);
     }
+
+    @Override
+    public List<Componente> localizarPorData(LocalDate dia) {
+        CardapioAssistencia card;
+         card = entityManager.createQuery("SELECT DISTINCT c FROM CardapioAssistencia c LEFT JOIN FETCH c.prato WHERE c.dia = :dia", 
+                CardapioAssistencia.class).setParameter("dia", dia).getSingleResult();
+         Prato p = entityManager.createQuery("SELECT p FROM Prato p LEFT JOIN FETCH p.componentes WHERE p.id = :pid", 
+                 Prato.class).setParameter("pid", card.getPrato().getId()).getSingleResult();
+         return p.getComponentes();
+    }
+    
+    
     
     
     
