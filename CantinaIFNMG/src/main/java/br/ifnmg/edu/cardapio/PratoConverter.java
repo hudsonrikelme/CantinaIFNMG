@@ -34,7 +34,6 @@ public class PratoConverter implements javax.faces.convert.Converter<Prato>{
         if (id == null) {
             return null;
         }
-        System.out.println(pratoService.localizarPorId(Long.valueOf(id)));
         return pratoService.localizarPorId(Long.valueOf(id));
     }
     

@@ -11,7 +11,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 /**
@@ -74,8 +73,6 @@ public class AssistenciaBean implements Serializable{
     }
     
     public String salvar(){
-        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
-        System.out.println(novoCardapio.toString());
         assistService.save(novoCardapio);
         reset();
         return "cadastroCardapioAssistencia?faces-redirect=true";

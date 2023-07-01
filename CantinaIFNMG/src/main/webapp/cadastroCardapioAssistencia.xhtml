@@ -32,7 +32,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 <p:selectOneMenu 
                     id="advanced"
                     value="#{assistenciaBean.novoCardapio.prato}"
-                    converter="#{pratoConverter}"
+                    converter="pratoConverter"
                     filter="true" 
                     filterMatchMode="contains"  
                     styleClass="manymenu-advanced">
@@ -45,7 +45,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 </p:selectOneMenu>
             </p>
             <p>
-                <p:commandButton value="Salvar" action="#{assistenciaBean.salvar()}"/>
+                <p:commandButton value="Salvar" action="#{assistenciaBean.salvar}"/>
             </p>
         </h:form>
     </h:body>
