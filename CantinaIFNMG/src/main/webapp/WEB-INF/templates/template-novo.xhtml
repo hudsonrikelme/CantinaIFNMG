@@ -6,22 +6,23 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
-        <h:outputStylesheet library="css" name="testeCSS.css"/>
+        <h:outputStylesheet library="css" name="estilo_template.css"/>
         <title>Facelets Template</title>
     </h:head>
 
     <h:body>
+        <div>
 
-        <div class="bodyMeio">
             <header id="header">
 
                 <!--                <h:graphicImage  id="logo" library="img" name="logoCantina.png"/>-->
-                <img src="#{request.contextPath}/resources/img/logoCantina.png" alt="Logo da Cantina" style="max-height: 180px;"/>
+                <img src="#{request.contextPath}/resources/img/logoCantina.png" alt="Logo da Cantina" style="max-height: 180px; margin-top: 20px;" />
+
 
 
                 <ui:insert name="top"></ui:insert>
+                <div class="tarjapretamenu">
+                    <div class="centraliza">    
                 <nav>
                     <ul>
                         <li><a href="#">Pagina1</a></li>
@@ -30,6 +31,8 @@
                         <li><a href="#">Cadastro</a></li>
                     </ul>
                 </nav>
+                </div>
+                </div>
             </header>
         </div>
 
@@ -39,7 +42,6 @@
                 <ui:insert name="content"></ui:insert>
             </main>
         </div>
-
 
 
 
