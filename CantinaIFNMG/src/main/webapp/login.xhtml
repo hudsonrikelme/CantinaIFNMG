@@ -23,12 +23,8 @@
         <div class="main">
             <p:messages id="messages" globalOnly="true"/>
             <div class="left-main">
-                <!-- <h1>Digite Seu Número de Telefone<br/><br/> Para Gerar o QR Code</h1> -->
-                <!--<img src="img/Investment-data-amico.png" class="left-login-image"/>-->
-                <!--<h:graphicImage class="left-main-image" name="img/Investment data-amico.png"/>-->
             </div>
             <div class="right-main">
-                <!--<div class="card-main">-->
                 <h:form class="card-main">
                     <h1>LOGIN</h1>
                     <h:panelGroup class="textfield">
@@ -48,7 +44,8 @@
                                      p:ajax="false"
                                      style="centro"/>
                     <div class="linklogin">
-                        <p:outputLabel>Ainda não tem Conta?</p:outputLabel><h:commandLink action="login.xhtml" value="Cadastre-se" styleClass="branco"/>
+                        <p:outputLabel>Ainda não tem Conta?</p:outputLabel>
+                        <h:commandLink action="login.xhtml" styleClass="branco">Cadastre-se</h:commandLink>
                     </div>
                 </h:form>
             </div>
