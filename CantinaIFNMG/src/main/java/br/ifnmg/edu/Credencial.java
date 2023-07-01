@@ -13,12 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Lucas Freitas &lt;lpf1 at ifnmg.edu.br&gt;
  */
 @Entity
+@Table(name = "credenciais")
 @NamedQueries({
     @NamedQuery(
             name = "Credencial.all",
@@ -42,7 +44,7 @@ public class Credencial implements Serializable {
     private String email;
 
     @Enumerated(EnumType.STRING)
-    private TipoCliente tipoCliente = TipoCliente.CLIENTE;
+    private TipoCliente tipoCliente = TipoCliente.GERENTE;
 
     @OneToOne(mappedBy = "credencial" ,
                 cascade = CascadeType.ALL)

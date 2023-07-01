@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Suas Credenciais</title>
+    </h:head>
+    <h:body>
+        <h3>Credenciais</h3>
+        <p:panel>
+            <p:dataTable 
+                value="#{controladorCredenciais.allCredenciais}" 
+                var="credencial">
+                <p:column headerText="Id">
+                    <h:outputText value="#{credencial.id}"/>
+                </p:column>
+                <p:column headerText="Name">
+                    <h:outputText value="#{credencial.cliente.nome}"/>
+                </p:column>
+                <p:column headerText="Username">
+                    <h:outputText value="#{credencial.email}"/>
+                </p:column>
+            </p:dataTable>
+            <f:facet name="footer">
+                <h:form>
+                    <p:commandLink
+                        value="Back"
+                        action="/app/index?faces-redirect=true" />&nbsp;
+                    <p:commandButton 
+                        value="Logout" 
+                        action="#{userController.logout}" />
+                </h:form>
+            </f:facet>
+        </p:panel>
+    </h:body>
+</html>

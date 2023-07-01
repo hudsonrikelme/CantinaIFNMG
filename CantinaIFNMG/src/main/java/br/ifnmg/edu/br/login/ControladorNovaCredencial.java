@@ -54,6 +54,6 @@ public class ControladorNovaCredencial {
                 credencial.getSenha());
         
         
-        return "app/credenciais?faces-redirect=true";
+        return "credenciais?faces-redirect=true";
     }
 }
