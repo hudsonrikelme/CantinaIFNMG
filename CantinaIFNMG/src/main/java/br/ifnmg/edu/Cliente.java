@@ -57,6 +57,10 @@ public class Cliente implements Serializable {
         compras = new ArrayList<>();
     }
 
+    public Cliente(Credencial credencial) {
+        this.credencial = credencial;
+    }
+    
     public void adicionarCompra(Compra c) {
         compras.add(c);
     }
