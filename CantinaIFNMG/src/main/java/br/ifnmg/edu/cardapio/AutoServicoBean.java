@@ -30,10 +30,12 @@ public class AutoServicoBean {
     private CardapioAutoServico novoCardapio;
     private List<Componente> componentes;
     private LocalDate minDate;
+    private CardapioAutoServico cardapioDia;
     
     public AutoServicoBean() {
         componentes = new ArrayList<>();
         novoCardapio = new CardapioAutoServico();
+        cardapioDia = new CardapioAutoServico();
         minDate = LocalDate.now();
     }
     
@@ -63,26 +65,46 @@ public class AutoServicoBean {
     public void setMinDate(LocalDate minDate) {
         this.minDate = minDate;
     }
+
+    public CardapioAutoServico getCardapioDia() {
+        return cardapioDia;
+    }
+
+    public void setCardapioDia(CardapioAutoServico cardapioDia) {
+        this.cardapioDia = cardapioDia;
+    }
+    
+    
     
     //</editor-fold>
     
     @PostConstruct
     public void carregarComponentes(){
+        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
         System.out.println(componenteService.findAll());
         this.componentes = componenteService.findAll();
     }
     
     public String salvarCardapio(){
-        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
+        //System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
         System.out.println(novoCardapio.toString());
         autoServicoService.save(novoCardapio);
         reset();
         return "cadastroCardapioSelfService?faces-redirect=true";
     }
     
+    public String localizarCardapio(){
+        System.out.println("###############################################\n");
+        System.out.println(autoServicoService.localizarPorData(LocalDate.now()));
+        this.cardapioDia = autoServicoService.localizarPorData(LocalDate.now());
+        System.out.println("Cardapio do dia:" + cardapioDia);
+        return "localizarCardapio?faces-redirect=true";
+    }
+    
     public void reset() {
         componentes = new ArrayList<>();
         novoCardapio = new CardapioAutoServico();
+        cardapioDia = new CardapioAutoServico();
         minDate = LocalDate.now();
     }
     

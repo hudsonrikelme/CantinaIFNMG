@@ -4,6 +4,7 @@
  */
 package br.ifnmg.edu.cardapio;
 
+import java.time.LocalDate;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -19,5 +20,7 @@ public void save(CardapioAutoServico cardapioAutoServico);
     List<CardapioAutoServico> findAll();
 
     CardapioAutoServico localizarPorId(Long id);
+
+    CardapioAutoServico localizarPorData(LocalDate dia);
 
 }

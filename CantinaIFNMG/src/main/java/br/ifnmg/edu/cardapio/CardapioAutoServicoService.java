@@ -1,7 +1,9 @@
 
 package br.ifnmg.edu.cardapio;
 
+import java.time.LocalDate;
 import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -31,6 +33,14 @@ public class CardapioAutoServicoService implements CardapioAutoServicoServiceLoc
     public CardapioAutoServico localizarPorId(Long id) {
         return entityManager.find(CardapioAutoServico.class, id);
     }
+
+    @Override
+    public CardapioAutoServico localizarPorData(LocalDate dia) {
+        return entityManager.createQuery("SELECT DISTINCT c FROM CardapioAutoServico c LEFT JOIN FETCH c.componentes WHERE c.dia = :dia", 
+                CardapioAutoServico.class).setParameter("dia", dia).getSingleResult();
+    }
+    
+    
     
     
     
