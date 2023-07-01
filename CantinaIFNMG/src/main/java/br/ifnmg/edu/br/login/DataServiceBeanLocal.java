@@ -13,12 +13,10 @@ import javax.ejb.Local;
 @Local
 public interface DataServiceBeanLocal {
 
-
-
-
     Optional<Credencial> getCredencial(String email);
 
-//    public Credencial criaCredencial(Cliente cliente, String email, String senha);
+    // public Credencial criaCredencial(Cliente cliente, String email, String
+    // senha);
 
     public List<Credencial> getAllCredenciais();
 
@@ -28,10 +26,11 @@ public interface DataServiceBeanLocal {
 
     void salvarCliente(Cliente cliente);
 
-//    public Credencial criaCredencial(Cliente cliente, String email, String senha, String group);
+    public Credencial criaCredencial(Cliente cliente, String email, String senha, Credencial.TipoCliente tipoCliente);
 
-//    public Credencial criaCredencial(Cliente cliente, String email, String senha, Credencial.TipoCliente tipoCliente);
+    // public Credencial criaCredencial(Cliente cliente, String email, String senha,
+    // Credencial.TipoCliente tipoCliente);
 
     public Credencial criaCredencial(Cliente cliente, String email, String senha, Credencial.TipoCliente tipoCliente);
-    
+
 }

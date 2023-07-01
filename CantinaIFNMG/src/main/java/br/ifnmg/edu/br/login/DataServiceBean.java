@@ -28,41 +28,36 @@ public class DataServiceBean
     @Inject
     Pbkdf2PasswordHash passwordHasher;
 
-    
     /**
      * Cria a credencial de um cliente de acordo com suas informações
+     * 
      * @param cliente
      * @param email
      * @param senha
      * @param tipoCliente
-     * @return 
+     * @return
      */
     @Override
-    public Credencial criaCredencial(Cliente cliente,
-            String email,
-            String senha,
-            Credencial.TipoCliente tipoCliente) {
 
+    public Credencial criaCredencial(Cliente cliente, String email, String senha, Credencial.TipoCliente tipoCliente) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("Pbkdf2PasswordHash.Iterations", "3071");
         parameters.put("Pbkdf2PasswordHash.Algorithm", "PBKDF2WithHmacSHA512");
         parameters.put("Pbkdf2PasswordHash.SaltSizeBytes", "64");
         passwordHasher.initialize(parameters);
 
-        Credencial novaCredencial =  new Credencial(
-                email, 
-                passwordHasher.generate(senha.toCharArray()), 
+        Credencial novaCredencial = new Credencial(
+                email,
+                passwordHasher.generate(senha.toCharArray()),
                 cliente);
         novaCredencial.setTipoCliente(tipoCliente);
-        cliente.setCredencial(novaCredencial);     
-
+        cliente.setCredencial(novaCredencial);
+        novaCredencial.setTipoCliente(Credencial.TipoCliente.CLIENTE);
         em.persist(novaCredencial);
-        
+
         return novaCredencial;
     }
 
-    
-    
     @Override
     public List<Credencial> getAllCredenciais() {
         return em.createNamedQuery("Credencial.all", Credencial.class).getResultList();
@@ -74,7 +69,7 @@ public class DataServiceBean
                 .setParameter("email", email)
                 .getResultList()
                 .stream()
-                .findFirst(); //Pode ser null (Optional)...
+                .findFirst(); // Pode ser null (Optional)...
     }
 
     @Override
@@ -95,9 +90,5 @@ public class DataServiceBean
     public void salvarCliente(Cliente cliente) {
         em.persist(cliente);
     }
-
-    
-    
-    
 
 }

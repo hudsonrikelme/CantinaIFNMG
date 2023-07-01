@@ -54,6 +54,6 @@ public class ControladorNovaCredencial {
                 Credencial.TipoCliente.CLIENTE);
         
         
-        return "credenciais?faces-redirect=true";
+        return "app/index?faces-redirect=true";
     }
 }
