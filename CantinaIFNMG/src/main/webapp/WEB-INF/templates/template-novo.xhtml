@@ -20,18 +20,7 @@
                 <!--                <h:graphicImage  id="logo" library="img" name="logoCantina.png"/>-->
                 <img src="#{request.contextPath}/resources/img/logoCantina.png" alt="Logo da Cantina" style="max-height: 180px; margin-top: 20px;" />
 
-                <div class="tarjapretamenu" id="tarjapretamenu">
-                    <div class="centraliza">    
-                        <nav>
-                            <ul>
-                                <li><a href="#">Pagina1</a></li>
-                                <li><a href="#">Pagina2</a></li>
-                                <li><a href="#">Login</a></li>
-                                <li><a href="#">Cadastro</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
+                
 
                 <ui:insert name="top"></ui:insert>
 
@@ -55,6 +44,19 @@
         </footer>
 
 
+        <div class="tarjapretamenu" id="tarjapretamenu">
+                    <div class="centraliza">    
+                        <nav>
+                            <ul>
+                                <li><a href="#">Pagina1</a></li>
+                                <li><a href="#">Pagina2</a></li>
+                                <li><a href="#">Pagina3</a></li>
+                                <li><a href="login.xhtml">Login</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+        </div>
+        
         <script>
             window.addEventListener('scroll', function () {
                 var menu = document.getElementById('tarjapretamenu');
