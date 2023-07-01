@@ -34,38 +34,27 @@
 
                 <p:password id="password"  placeholder="Senha" value="#{controladorNovaCredencial.credencial.senha}"/>
 
-                <!--                <p:outputLabel
-                                    for="credencial"
-                                    value="Credencial" />
-                                <p:selectOneRadio
-                                    id="tipocliente"
-                                    value="{controladorNovaCredencial.credencial.tipoCliente}">
-                                    <f:selectItem
-                                        itemLabel="Gerente"
-                                        itemValue="GERENTE"/>
-                                    <f:selectItem
-                                        itemLabel="Cliente"
-                                        itemValue="CLIENTE"/>
-                                    <f:selectItem
-                                        itemLabel="Caixa"
-                                        itemValue="CAIXA"/>
-                                    <f:selectItem
-                                        itemLabel="Nutricionista"
-                                        itemValue="NUTRICIONISTA"/>
-                                </p:selectOneRadio>-->
 
-                <p:commandLink
-                    value="Cancelar"
-                    action="/app/index?faces-redirect=true" />
+                <p:outputLabel>Tipo de Acesso</p:outputLabel>
+                <p:selectOneListbox value="#{controladorNovaCredencial.credencialselecionada}"
+                                    id="tipo">
+                    <f:selectItems value="#{controladorNovaCredencial.tipocliente}" var="tipo"
+                                   itemValue="#{tipo}" itemLabel="#{tipo.rotulo}"/>
+                </p:selectOneListbox>
 
-                <h:commandButton class="btn-gerar"
-                                 id="submit"
-                                 value="Cadastrar"
-                                 action="#{controladorNovaCredencial.save()}"
-                                 p:update="@form"
-                                 p:ajax="false"
-                                 style="centro"/>
+                <div>
+                    <p:commandLink
+                        value="Cancelar"
+                        action="/app/index?faces-redirect=true" />
 
+                    <p:commandButton class="btn-gerar"
+                                     id="submit"
+                                     value="Cadastrar"
+                                     action="#{controladorNovaCredencial.salvarAdministrativo()}"
+                                     update="@form"
+                                     ajax="false"
+                                     style="centro"/>
+                </div>
             </p:panelGrid>
         </h:form>
 

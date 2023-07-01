@@ -2,8 +2,7 @@ package br.ifnmg.edu.br.login;
 
 import br.ifnmg.edu.Cliente;
 import br.ifnmg.edu.Credencial;
-import br.ifnmg.edu.br.login.DataServiceBeanLocal;
-import br.ifnmg.edu.compra.Compra;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +27,14 @@ public class DataServiceBean
     @Inject
     Pbkdf2PasswordHash passwordHasher;
 
+    
+
+    
+    
+    
+    
+    
+    
     /**
      * Cria a credencial de um cliente de acordo com suas informações
      * 
@@ -92,4 +99,8 @@ public class DataServiceBean
         em.persist(cliente);
     }
 
+    
+
+    
+    
 }
