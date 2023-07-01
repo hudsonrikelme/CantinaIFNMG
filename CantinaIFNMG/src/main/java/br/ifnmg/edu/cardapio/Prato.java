@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,8 +33,8 @@ public class Prato implements Serializable {
     private String nome;
 
     @ManyToMany(cascade = CascadeType.DETACH)
-    @JoinTable (joinColumns = @JoinColumn(name ="componente_id"),
-            inverseJoinColumns = @JoinColumn(name = "prato_id") )
+    @JoinTable (joinColumns = @JoinColumn(name ="prato_id"),
+            inverseJoinColumns = @JoinColumn(name = "componente_id") )
     private List<Componente> componentes;
 
     //<editor-fold defaultstate="collapsed" desc="Construtores">

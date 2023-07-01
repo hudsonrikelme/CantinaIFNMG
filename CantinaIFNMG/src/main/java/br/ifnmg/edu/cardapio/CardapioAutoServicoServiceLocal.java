@@ -4,6 +4,7 @@
  */
 package br.ifnmg.edu.cardapio;
 
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -14,5 +15,9 @@ import javax.ejb.Local;
 public interface CardapioAutoServicoServiceLocal {
 
 public void save(CardapioAutoServico cardapioAutoServico);
+
+    List<CardapioAutoServico> findAll();
+
+    CardapioAutoServico localizarPorId(Long id);
 
 }

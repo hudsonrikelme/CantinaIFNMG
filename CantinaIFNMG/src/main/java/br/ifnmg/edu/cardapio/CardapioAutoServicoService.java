@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/J2EE/EJB30/StatelessEjbClass.java to edit this template
- */
+
 package br.ifnmg.edu.cardapio;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,6 +20,21 @@ public class CardapioAutoServicoService implements CardapioAutoServicoServiceLoc
     public void save (CardapioAutoServico cardapioAutoServico){
        entityManager.persist(cardapioAutoServico);
    }
+
+    @Override
+    public List<CardapioAutoServico> findAll() {
+        return entityManager.createQuery("SELECT DISTINCT cd FROM CardapioAutoServico cd",
+                CardapioAutoServico.class).getResultList() ;
+    }
+
+    @Override
+    public CardapioAutoServico localizarPorId(Long id) {
+        return entityManager.find(CardapioAutoServico.class, id);
+    }
+    
+    
+    
+    
    
    
 }

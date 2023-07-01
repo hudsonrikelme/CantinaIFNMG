@@ -31,7 +31,7 @@ public class CardapioAutoServico implements Serializable {
     private Long id;
     private LocalDate dia;
 
-   @ManyToMany(cascade = CascadeType.ALL)
+   @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable (joinColumns = @JoinColumn(name ="componente_id"),
             inverseJoinColumns = @JoinColumn(name = "cardapioAutoServico_id") )
     private List<Componente> componentes;

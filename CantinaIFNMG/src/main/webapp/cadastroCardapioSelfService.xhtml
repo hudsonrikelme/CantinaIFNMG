@@ -9,20 +9,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Cadastro Prato</title>
+        <title>Cadastrar Cardápio AutoServiço</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
+
         <h:form>
             <p>
-                <p:outputLabel value="Nome: "/>
-                <p:inputText value="#{pratoBean.novoPrato.nome}" id="pnome"/>
+                <p:outputLabel 
+                    value="Data do cardápio"/>
+                <p:datePicker 
+                    id="expiration"
+                    value="#{autoServicoBean.novoCardapio.dia}"
+                    mask="true"
+                    maskSlotChar="_"
+                    pattern="dd/MM/yyyy"
+                    mindate="#{autoServicoBean.minDate}"
+                    showButtonBar="true"/>
+
             </p>
             <p>
                 <p:outputLabel value="Selecione os componentes do prato: "/>
                 <p:selectManyMenu 
                     id="advanced"
-                    value="#{pratoBean.novoPrato.componentes}"
+                    value="#{autoServicoBean.novoCardapio.componentes}"
                     converter="#{componenteConverter}"
                     filter="true" 
                     filterMatchMode="contains" 
@@ -30,15 +40,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     styleClass="manymenu-advanced">
 
                     <f:selectItems 
-                        value="#{pratoBean.componentes}" 
+                        value="#{autoServicoBean.componentes}" 
                         var="componente" 
                         itemLabel="#{componente.nome}"
                         itemValue="#{componente}"/>
                 </p:selectManyMenu>
             </p>
-
             <p>
-                <p:commandButton value="Salvar" action="#{pratoBean.salvarPrato()}"/>
+                <p:commandButton value="Salvar" action="#{autoServicoBean.salvarCardapio()}"/>
             </p>
         </h:form>
 

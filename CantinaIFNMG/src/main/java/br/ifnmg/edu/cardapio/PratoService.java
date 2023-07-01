@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/J2EE/EJB30/StatelessEjbClass.java to edit this template
- */
+
 package br.ifnmg.edu.cardapio;
 
 import java.util.List;
@@ -26,7 +23,7 @@ public class PratoService implements PratoServiceLocal {
    
     @Override
     public List<Prato> findAll() {
-        return entityManager.createQuery("SELECT DISTINCT p FROM Prato p", 
+        return entityManager.createQuery("SELECT DISTINCT p FROM Prato p LEFT JOIN FETCH p.componentes", 
                 Prato.class).getResultList();
     }
 

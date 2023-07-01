@@ -4,6 +4,8 @@
  */
 package br.ifnmg.edu.cardapio;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
@@ -19,9 +21,10 @@ public class DbPopulator {
     
     @Inject
     private CategoriaServiceLocal ctService;
-    
     @Inject
     private ComponenteServiceLocal cpService;
+    @Inject
+    private PratoServiceLocal pratoService;
     
     @PostConstruct
     public void populator(){
@@ -72,6 +75,63 @@ public class DbPopulator {
         cpService.salvar(cp12);
         cpService.salvar(cp13);
         cpService.salvar(cp14);
+        
+        //<editor-fold defaultstate="collapsed" desc="Listas dos pratos">
+        List<Componente> prato1 = new ArrayList<>();
+        List<Componente> prato2 = new ArrayList<>();
+        List<Componente> prato3 = new ArrayList<>();
+        List<Componente> prato4 = new ArrayList<>();
+        List<Componente> prato5 = new ArrayList<>();
+        
+        prato1.add(cp1);
+        prato1.add(cp3);
+        prato1.add(cp4);
+        prato1.add(cp9);
+        prato1.add(cp10);
+        prato1.add(cp13);
+        
+        prato2.add(cp2);
+        prato2.add(cp3);
+        prato2.add(cp5);
+        prato2.add(cp7);
+        prato2.add(cp11);
+        prato2.add(cp14);
+        
+        
+        prato3.add(cp1);
+        prato3.add(cp3);
+        prato3.add(cp6);
+        prato3.add(cp8);
+        prato3.add(cp12);
+        prato3.add(cp13);
+        
+        prato4.add(cp2);
+        prato4.add(cp3);
+        prato4.add(cp4);
+        prato4.add(cp7);
+        prato4.add(cp10);
+        prato4.add(cp14);
+        
+        prato5.add(cp1);
+        prato5.add(cp3);
+        prato5.add(cp5);
+        prato5.add(cp8);
+        prato5.add(cp11);
+        prato5.add(cp13);
+        
+//</editor-fold>
+        
+        Prato p1 = new Prato("Segunda",prato1);
+        Prato p2 = new Prato("Terça",prato2);
+        Prato p3 = new Prato("Quarta",prato3);
+        Prato p4 = new Prato("Quinta",prato4);
+        Prato p5 = new Prato("Sexta",prato5);
+        
+        pratoService.save(p1);
+        pratoService.save(p2);
+        pratoService.save(p3);
+        pratoService.save(p4);
+        pratoService.save(p5);
         
     }
     

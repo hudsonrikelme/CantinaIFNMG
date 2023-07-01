@@ -4,48 +4,48 @@
  */
 package br.ifnmg.edu.cardapio;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 /**
  *
  * @author gusta
  */
-@Named(value = "pratoBean")
+@Named(value = "autoServicoBean")
 @RequestScoped
-public class PratoBean {
+public class AutoServicoBean {
 
-    @Inject
-    private PratoServiceLocal pratoService;
-    
     @Inject
     private ComponenteServiceLocal componenteService;
-
-    private List<Componente> componentes; 
     
-    private Prato novoPrato;
-
-    /**
-     * Creates a new instance of PratoBean
-     */
-    public PratoBean() {
+    @Inject
+    private CardapioAutoServicoServiceLocal autoServicoService;
+    
+    private CardapioAutoServico novoCardapio;
+    private List<Componente> componentes;
+    private LocalDate minDate;
+    
+    public AutoServicoBean() {
         componentes = new ArrayList<>();
-        novoPrato = new Prato();
+        novoCardapio = new CardapioAutoServico();
+        minDate = LocalDate.now();
     }
     
     //<editor-fold defaultstate="collapsed" desc="Getteres/Setteres">
     
 
-    public Prato getNovoPrato() {
-        return novoPrato;
+    public CardapioAutoServico getNovoCardapio() {
+        return novoCardapio;
     }
 
-    public void setNovoPrato(Prato novoPrato) {
-        this.novoPrato = novoPrato;
+    public void setNovoCardapio(CardapioAutoServico novoCardapio) {
+        this.novoCardapio = novoCardapio;
     }
 
     public List<Componente> getComponentes() {
@@ -55,7 +55,14 @@ public class PratoBean {
     public void setComponentes(List<Componente> componentes) {
         this.componentes = componentes;
     }
-    
+
+    public LocalDate getMinDate() {
+        return minDate;
+    }
+
+    public void setMinDate(LocalDate minDate) {
+        this.minDate = minDate;
+    }
     
     //</editor-fold>
     
@@ -65,17 +72,18 @@ public class PratoBean {
         this.componentes = componenteService.findAll();
     }
     
-    public String salvarPrato(){
+    public String salvarCardapio(){
         System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
-        System.out.println(novoPrato.toString());
-        pratoService.save(novoPrato);
+        System.out.println(novoCardapio.toString());
+        autoServicoService.save(novoCardapio);
         reset();
-        return "cadastroPrato?faces-redirect=true";
+        return "cadastroCardapioSelfService?faces-redirect=true";
     }
     
-    public void reset(){
+    public void reset() {
         componentes = new ArrayList<>();
-        novoPrato = new Prato();
+        novoCardapio = new CardapioAutoServico();
+        minDate = LocalDate.now();
     }
-
+    
 }

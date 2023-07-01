@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Cadatrar Cardápio Assistência</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p>
+                <p:outputLabel 
+                    value="Data do cardápio"/>
+                <p:datePicker 
+                    id="expiration"
+                    value="#{assistenciaBean.novoCardapio.dia}"
+                    mask="true"
+                    maskSlotChar="_"
+                    pattern="dd/MM/yyyy"
+                    mindate="#{assistenciaBean.minDate}"
+                    showButtonBar="true"/>
+
+            </p>
+            <p>
+                <p:outputLabel value="Selecione os componentes do prato: "/>
+                <p:selectOneMenu 
+                    id="advanced"
+                    value="#{assistenciaBean.novoCardapio.prato}"
+                    converter="#{pratoConverter}"
+                    filter="true" 
+                    filterMatchMode="contains"  
+                    styleClass="manymenu-advanced">
+
+                    <f:selectItems 
+                        value="#{assistenciaBean.pratos}" 
+                        var="prato" 
+                        itemLabel="#{prato.nome}"
+                        itemValue="#{prato}"/>
+                </p:selectOneMenu>
+            </p>
+            <p>
+                <p:commandButton value="Salvar" action="#{assistenciaBean.salvar()}"/>
+            </p>
+        </h:form>
+    </h:body>
+</html>

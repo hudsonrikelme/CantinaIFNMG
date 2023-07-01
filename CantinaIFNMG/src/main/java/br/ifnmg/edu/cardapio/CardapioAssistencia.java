@@ -6,18 +6,17 @@ package br.ifnmg.edu.cardapio;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -32,20 +31,24 @@ public class CardapioAssistencia implements Serializable {
     private Long id;
     private LocalDate dia;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(joinColumns = @JoinColumn(name = "prato_id"),
-            inverseJoinColumns = @JoinColumn(name = "cardapioAssitencia_id")
-    )
-    private List<Prato> pratos;
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "prato_id")
+    private Prato prato;
+
+    //<editor-fold defaultstate="collapsed" desc="Construtores">
+    
 
     public CardapioAssistencia() {
-        this.pratos = new ArrayList<>();
     }
 
-    public CardapioAssistencia(LocalDate dia, List<Prato> pratos) {
+    public CardapioAssistencia(LocalDate dia, Prato prato) {
         this.dia = dia;
-        this.pratos = pratos;
+        this.prato = prato;
     }
+    //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="Gets/Sets">
+    
 
     public Long getId() {
         return id;
@@ -63,13 +66,17 @@ public class CardapioAssistencia implements Serializable {
         this.dia = dia;
     }
 
-    public List<Prato> getPratos() {
-        return pratos;
+    public Prato getPrato() {
+        return prato;
     }
 
-    public void setPratos(List<Prato> pratos) {
-        this.pratos = pratos;
+    public void setPrato(Prato prato) {
+        this.prato = prato;
     }
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Hashcode/Equals/toString">
+    
 
     @Override
     public int hashCode() {
@@ -94,7 +101,8 @@ public class CardapioAssistencia implements Serializable {
 
     @Override
     public String toString() {
-        return "CardapioAssistencia{" + "id=" + id + ", dia=" + dia + ", pratos=" + pratos + '}';
+        return "CardapioAssistencia{" + "id=" + id + ", dia=" + dia + ", prato=" + prato + '}';
     }
 
+    //</editor-fold>
 }
