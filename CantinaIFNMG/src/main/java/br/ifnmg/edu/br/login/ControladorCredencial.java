@@ -3,9 +3,11 @@ package br.ifnmg.edu.br.login;
 import br.ifnmg.edu.Cliente;
 import br.ifnmg.edu.Credencial;
 import br.ifnmg.edu.br.login.DataServiceBeanLocal;
+import java.io.Serializable;
 import java.util.Optional;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,8 +19,8 @@ import javax.servlet.ServletException;
  * @author Hudson Rikelme <hudson.rikelme at ifnmg.edu.br>
  */
 @Named
-@RequestScoped
-public class ControladorCredencial {
+@SessionScoped
+public class ControladorCredencial implements Serializable{
 
     @Inject
     DataServiceBeanLocal dataService;
@@ -44,6 +46,10 @@ public class ControladorCredencial {
         this.currentCredencial.ifPresent(credencial -> {
             this.currentCliente = dataService.getCliente(credencial);
         });
+    }
+
+    public Cliente getCurrentCliente() {
+        return currentCliente;
     }
 
     public Credencial getCurrentCredencial() {

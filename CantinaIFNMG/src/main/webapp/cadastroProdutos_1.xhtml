@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panelGrid columns="2"
+                         styleClass="ui-noborder">
+
+                
+                
+                
+                
+                <p:outputLabel value="Nome: " for="nome"/>
+                <p:inputText value="#{produtoBean.p.nome}" id="nome"/>
+
+                <p:outputLabel value="Descrição: " for="descricao"/>
+                <p:panelGrid columns="1" styleClass="ui-noborder">
+                <p:inputTextarea rows="3" cols="100" counter="display" maxlength="255"
+                                 counterTemplate="{0} caracteres restantes." autoResize="false"
+                                 id="descricao" value="#{produtoBean.p.descricao}"/>
+                <h:outputText id="display" class="block"/>
+                </p:panelGrid>
+
+                <p:outputLabel value="Preço: " for="preco"/>
+                <p:inputNumber id="preco"
+                               value="#{produtoBean.p.preco}"
+                               symbol="R$ "
+                               symbolPosition="p"
+                               decimalSeparator=","
+                               thousandSeparator="." />
+                
+                <p:commandButton value="Salvar" action="#{produtoBean.salvar()}"/>
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>

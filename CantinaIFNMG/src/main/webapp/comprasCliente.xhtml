@@ -1,43 +1,61 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Compras</title>
-    </h:head>
-    <h:body>
-        <h:form>
-            <p:commandButton value="Voltar" action="editarCliente"/>
-            <p:dataTable var="compra" value="#{gerenteBean.compras}">
-                <p:column headerText="Id">
-                    <h:outputText value="#{compra.id}" />
-                </p:column>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/template-novo.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-                <p:column headerText="Produtos">
-                    <h:outputText value="#{gerenteBean.produtos(compra)}" />
-                </p:column>
+    <ui:define name="top">
+    </ui:define>
 
-                <p:column headerText="Total">
-                    <h:outputText value="#{compra.total}" />
-                </p:column>
+    <ui:define name="content">
 
-                <p:column headerText="Pago">
-                    <h:outputText value="#{compra.pago ? 'Sim' : 'Não' }" />
-                </p:column>
+        <div class="box">        
 
-                <p:column headerText="Data">
-                    <h:outputText value="#{compra.dia}" />
-                </p:column>
 
-                <p:column headerText="Tipo de Pagamento">
-                    <h:outputText value="#{compra.tipoPagamento.rotulo}" />
-                </p:column>
 
-                <p:column headerText="Editar">
-                    <p:commandButton value="Editar" action="#{caixaBean.editarCompra(compra)}"/>
-                </p:column>
-            </p:dataTable>
-        </h:form>
-    </h:body>
-</html>
+            <h:form>
+                <p:commandButton value="Voltar" action="editarCliente"/>
+                <p:dataTable var="compra" value="#{gerenteBean.compras}">
+                    <p:column headerText="Id">
+                        <h:outputText value="#{compra.id}" />
+                    </p:column>
+
+                    <p:column headerText="Produtos">
+                        <h:outputText value="#{gerenteBean.produtos(compra)}" />
+                    </p:column>
+
+                    <p:column headerText="Total">
+                        <h:outputText value="#{compra.total}" />
+                    </p:column>
+
+                    <p:column headerText="Pago">
+                        <h:outputText value="#{compra.pago ? 'Sim' : 'Não' }" />
+                    </p:column>
+
+                    <p:column headerText="Data">
+                        <h:outputText value="#{compra.dia}" />
+                    </p:column>
+
+                    <p:column headerText="Tipo de Pagamento">
+                        <h:outputText value="#{compra.tipoPagamento.rotulo}" />
+                    </p:column>
+
+                    <p:column headerText="Editar">
+                        <p:commandButton value="Editar" action="#{caixaBean.editarCompra(compra)}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+
+
+
+
+        </div>
+    </ui:define>
+
+    <ui:define name="bottom">
+    </ui:define>
+
+</ui:composition>

@@ -4,6 +4,7 @@
  */
 package br.ifnmg.edu;
 
+import br.ifnmg.edu.br.login.ControladorCredencial;
 import br.ifnmg.edu.compra.CompraServiceLocal;
 import br.ifnmg.edu.compra.Compra;
 import br.ifnmg.edu.produto.Produto;
@@ -32,6 +33,9 @@ public class UsuarioBean implements Serializable {
 
     @Inject
     private CompraServiceLocal compraService;
+    
+    @Inject
+    ControladorCredencial controlador;
 
     private Cliente cliente;
     private List<Compra> compras;
@@ -52,7 +56,7 @@ public class UsuarioBean implements Serializable {
         tiposPagamento.remove(Compra.TipoPagamento.AUXILIO);
         tiposPagamento.remove(Compra.TipoPagamento.DINHEIRO);
 
-        cliente = clienteService.localizarPorId(1L);
+        cliente = controlador.getCurrentCliente();
         compras = compraService.localizarCompraPorCliente(cliente);
     }
 

@@ -53,7 +53,7 @@ public class ClienteService implements ClienteServiceLocal {
                 + " c.compras WHERE c.id = :id", Cliente.class)
                 .setParameter("id", id)
                 .getSingleResult();
-    }
+    } 
     
     
     

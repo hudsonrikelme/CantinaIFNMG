@@ -73,7 +73,7 @@ public class DataServiceBean
 
     @Override
     public Optional<Credencial> getCredencial(String email) {
-        return em.createNamedQuery("Credencial.email", Credencial.class)
+        return em.createNamedQuery("Credencial.byemail", Credencial.class)
                 .setParameter("email", email)
                 .getResultList()
                 .stream()
@@ -83,7 +83,7 @@ public class DataServiceBean
     @Override
     public Cliente getCliente(Credencial credencial) {
         return em.createNamedQuery("Cliente.byCredencial", Cliente.class)
-                .setParameter("cliente.id", credencial.getId())
+                .setParameter("credencialId", credencial.getId())
                 .getSingleResult();
     }
 

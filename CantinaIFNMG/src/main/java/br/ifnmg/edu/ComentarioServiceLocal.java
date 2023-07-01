@@ -12,16 +12,10 @@ import javax.ejb.Local;
  * @author Lucas
  */
 @Local
-public interface ClienteServiceLocal {
+public interface ComentarioServiceLocal {
 
-    void salvar(Cliente c);
+    void salvar(Comentario comentario);
 
-    List<Cliente> localizarTodos();
-
-    Cliente localizarPorId(Long id);
-
-    List<Cliente> localizarTodosComCompras();
-
-    Cliente localizarPorIdComCompra(Long id);
+    List<Comentario> localizarTodos();
     
 }

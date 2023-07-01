@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/template-novo.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="top">
+    </ui:define>
+
+    <ui:define name="content">
+
+        <div class="box">        
+
+
+            <h1>Menu principal</h1>
+            <h:form>
+                <p:commandButton 
+                    value="Minha Conta" 
+                    action="/cliente.xhtml?faces-redirect=true"/> &nbsp;
+                <p:commandButton 
+                    value="Editar Cliente" 
+                    action="/cliente.xhtml?faces-redirect=true" 
+                    rendered="#{p:ifGranted('GERENTE')}"/> &nbsp;
+                <p:commandButton 
+                    value="Cadastro Cardápio Assistência" 
+                    action="/cadastroCardapioAssistencia.xhtml?faces-redirect=true" 
+                    rendered="#{p:ifGranted('GERENTE') || p:ifGranted('NUTRICIONISTA') }"/> &nbsp;
+                <p:commandButton 
+                    value="Relatórios" 
+                    action="/relatorios.xhtml?faces-redirect=true" 
+                    rendered="#{p:ifGranted('GERENTE')}"/> &nbsp;
+                <p:commandButton 
+                    value="Cadastro Cardápio Assistência" 
+                    action="/cadastroCardapioSelfService.xhtml?faces-redirect=true" 
+                    rendered="#{p:ifGranted('GERENTE') || p:ifGranted('NUTRICIONISTA')}"/> &nbsp;
+                <p:commandButton 
+                    value="Cadastro Produtos" 
+                    action="/cliente.xhtml?faces-redirect=true" 
+                    rendered="#{p:ifGranted('GERENTE')}"/> &nbsp;
+                <p:commandButton 
+                    value="Cadastro Pratos" 
+                    action="/cadastroPrato.xhtml?faces-redirect=true" 
+                    rendered="#{p:ifGranted('GERENTE') || p:ifGranted('NUTRICIONISTA')}"/> &nbsp;
+                <p:commandButton 
+                    value="Registrar Compra" 
+                    action="/caixa.xhtml?faces-redirect=true" 
+                    rendered="#{p:ifGranted('GERENTE') || p:ifGranted('CAIXA') }"/> &nbsp;
+
+                <p:commandButton 
+                    value="Cadastro Administrativo" 
+                    action="/cadastro.xhtml?faces-redirect=true" 
+                    rendered="#{p:ifGranted('GERENTE')}"/> &nbsp;
+            </h:form>
+
+
+
+
+
+        </div>
+    </ui:define>
+
+    <ui:define name="bottom">
+    </ui:define>
+
+</ui:composition>

@@ -1,91 +1,102 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Caixa</title>
-        <style>
-            .corpo{
-                padding-left: 10%;
-                padding-right: 10%;
-            }
-        </style>
-    </h:head>
-    <h:body class="corpo">
-        <h:form>
-            <h:commandLink action="editarCliente?faces-redirect=true" value="Editar Cliente"/>
-            <p:panelGrid columns="2"
-                         styleClass="ui-noborder">
-                <p:outputLabel value="Cliente: " for="escolherCliente"/>
-                <p:selectOneListbox id="escolherCliente" value="#{caixaBean.cliente}"
-                                    converter="clienteConverter"
-                                    filter="true"
-                                    filterMatchMode="contains">
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/template-novo.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-                    <f:selectItems value="#{caixaBean.clientes}" 
-                                   var="cliente" 
-                                   itemLabel="#{cliente.cpf} - #{cliente.nome}" 
-                                   itemValue="#{produto}"/>
+    <ui:define name="top">
+    </ui:define>
 
-                </p:selectOneListbox>
-            </p:panelGrid>
+    <ui:define name="content">
 
-            <p:panelGrid columns="2"
-                         styleClass="ui-noborder">
-                <p:selectOneListbox id="escolherProduto" value="#{caixaBean.produto}"
-                                    converter="produtoConverter"
-                                    filter="true"
-                                    filterMatchMode="contains">
+        <div class="box">        
 
-                    <f:selectItems value="#{caixaBean.produtos}" 
-                                   var="produto" 
-                                   itemLabel="#{produto.nome}" 
-                                   itemValue="#{produto}"/>
 
-                </p:selectOneListbox>
 
-                <p:dataTable var="produto" value="#{caixaBean.produtosSelecionados}">
-                    <p:column headerText="Id">
-                        <h:outputText value="#{produto.id}" />
-                    </p:column>
+            <h:form>
+                <h:commandLink action="editarCliente?faces-redirect=true" value="Editar Cliente"/>
+                <p:panelGrid columns="2"
+                             styleClass="ui-noborder">
+                    <p:outputLabel value="Cliente: " for="escolherCliente"/>
+                    <p:selectOneListbox id="escolherCliente" value="#{caixaBean.cliente}"
+                                        converter="clienteConverter"
+                                        filter="true"
+                                        filterMatchMode="contains">
 
-                    <p:column headerText="Nome">
-                        <h:outputText value="#{produto.nome}" />
-                    </p:column>
+                        <f:selectItems value="#{caixaBean.clientes}" 
+                                       var="cliente" 
+                                       itemLabel="#{cliente.cpf} - #{cliente.nome}" 
+                                       itemValue="#{produto}"/>
 
-                    <p:column headerText="Descrição">
-                        <h:outputText value="#{produto.descricao}" />
-                    </p:column>
+                    </p:selectOneListbox>
+                </p:panelGrid>
 
-                    <p:column headerText="Preço">
-                        <h:outputText value="#{produto.preco}" />
-                    </p:column>
+                <p:panelGrid columns="2"
+                             styleClass="ui-noborder">
+                    <p:selectOneListbox id="escolherProduto" value="#{caixaBean.produto}"
+                                        converter="produtoConverter"
+                                        filter="true"
+                                        filterMatchMode="contains">
 
-                    <p:column>
-                        <p:commandButton value="Remover"
-                                         styleClass="ui-button-danger"
-                                         action="#{caixaBean.removerProduto(produto)}"
-                                         />
-                    </p:column>
-                </p:dataTable>
-                <p:commandButton value="Inserir" action="#{caixaBean.adicionarProduto()}"/>
-                <p:outputLabel value="Total: #{caixaBean.total}"/>
+                        <f:selectItems value="#{caixaBean.produtos}" 
+                                       var="produto" 
+                                       itemLabel="#{produto.nome}" 
+                                       itemValue="#{produto}"/>
 
-                <p:outputLabel value="Tipo de Pagamento: "
-                               for="tipo"/>
-                <p:selectOneListbox value="#{caixaBean.tipoPagamentoSelecionado}"
-                                    id="tipo">
-                    <f:selectItems value="#{caixaBean.tiposPagamento}" var="tipo"
-                                   itemValue="#{tipo}" itemLabel="#{tipo.rotulo}"/>
-                </p:selectOneListbox>
-                
-                <p:outputLabel value="Pago: " for="pago"/>
-                <p:selectBooleanCheckbox id="pago"
-                                         value="#{caixaBean.pago}"/>
-            </p:panelGrid>
-            <p:commandButton value="Salvar" action="#{caixaBean.salvar()}"/>
-        </h:form>
-    </h:body>
-</html>
+                    </p:selectOneListbox>
+
+                    <p:dataTable var="produto" value="#{caixaBean.produtosSelecionados}">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{produto.id}" />
+                        </p:column>
+
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{produto.nome}" />
+                        </p:column>
+
+                        <p:column headerText="Descrição">
+                            <h:outputText value="#{produto.descricao}" />
+                        </p:column>
+
+                        <p:column headerText="Preço">
+                            <h:outputText value="#{produto.preco}" />
+                        </p:column>
+
+                        <p:column>
+                            <p:commandButton value="Remover"
+                                             styleClass="ui-button-danger"
+                                             action="#{caixaBean.removerProduto(produto)}"
+                                             />
+                        </p:column>
+                    </p:dataTable>
+                    <p:commandButton value="Inserir" action="#{caixaBean.adicionarProduto()}"/>
+                    <p:outputLabel value="Total: #{caixaBean.total}"/>
+
+                    <p:outputLabel value="Tipo de Pagamento: "
+                                   for="tipo"/>
+                    <p:selectOneListbox value="#{caixaBean.tipoPagamentoSelecionado}"
+                                        id="tipo">
+                        <f:selectItems value="#{caixaBean.tiposPagamento}" var="tipo"
+                                       itemValue="#{tipo}" itemLabel="#{tipo.rotulo}"/>
+                    </p:selectOneListbox>
+
+                    <p:outputLabel value="Pago: " for="pago"/>
+                    <p:selectBooleanCheckbox id="pago"
+                                             value="#{caixaBean.pago}"/>
+                </p:panelGrid>
+                <p:commandButton value="Salvar" action="#{caixaBean.salvar()}"/>
+            </h:form>
+
+
+
+
+        </div>
+    </ui:define>
+
+    <ui:define name="bottom">
+    </ui:define>
+
+</ui:composition>

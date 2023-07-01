@@ -3,6 +3,7 @@ package br.ifnmg.edu.br.login;
 import br.ifnmg.edu.Cliente;
 import br.ifnmg.edu.Credencial;
 import br.ifnmg.edu.br.login.DataServiceBeanLocal;
+import java.math.BigDecimal;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Initialized;
 import javax.enterprise.event.Observes;
@@ -19,15 +20,16 @@ public class DadosIniciais {
     DataServiceBeanLocal dataService;
 
     public void execute(@Observes @Initialized(ApplicationScoped.class) Object event) {
-        if (dataService.getAllCredenciais().isEmpty()) {
-            Cliente c = new Cliente();
-
-            c.setNome("Hudson Rikelme Soares Aquino");
-            c.setCpf("111.222.333-44");
-            dataService.criaCredencial(c, "hudson@", "1234", Credencial.TipoCliente.GERENTE);
-
-            // dataService.salvarCliente(c);
-            // dataService.criaCliente(hudson);
-        }
+//        if (dataService.getAllCredenciais().isEmpty()) {
+//            Cliente c = new Cliente();
+//
+//            c.setNome("Hudson Rikelme Soares Aquino");
+//            c.setCpf("111.222.333-44");
+//            c.setSaldo(BigDecimal.ZERO);
+//            dataService.criaCredencial(c, "hudson@", "1234", Credencial.TipoCliente.GERENTE);
+//
+//            // dataService.salvarCliente(c);
+//            // dataService.criaCliente(hudson);
+//        }
     }
 }

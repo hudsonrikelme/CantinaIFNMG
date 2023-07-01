@@ -19,6 +19,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -27,6 +28,10 @@ import javax.persistence.OneToOne;
  * @author Lucas Freitas &lt;lpf1 at ifnmg.edu.br&gt;
  */
 @Entity
+@NamedQuery(
+        name = "Cliente.byCredencial",
+        query = "select c from Cliente c "
+        + "where c.credencial.id = :credencialId")
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,9 +53,6 @@ public class Cliente implements Serializable {
 
     private Boolean auxilio;
 
-    @Enumerated(EnumType.ORDINAL)
-    private TipoCliente tipoCliente;
-
     @OneToOne(cascade = CascadeType.ALL)
     private Credencial credencial;
 
@@ -61,17 +63,16 @@ public class Cliente implements Serializable {
     public Cliente(Credencial credencial) {
         this.credencial = credencial;
     }
-    
+
     public void adicionarCompra(Compra c) {
         compras.add(c);
     }
-    
-    public void cobrar(BigDecimal valor)
-    {
+
+    public void cobrar(BigDecimal valor) {
         saldo = saldo.subtract(valor);
     }
-    
-    public void adicionarSaldo(BigDecimal valor){
+
+    public void adicionarSaldo(BigDecimal valor) {
         saldo = saldo.add(valor);
     }
 
@@ -114,14 +115,6 @@ public class Cliente implements Serializable {
 
     public void setAuxilio(Boolean auxilio) {
         this.auxilio = auxilio;
-    }
-
-    public TipoCliente getTipoCliente() {
-        return tipoCliente;
-    }
-
-    public void setTipoCliente(TipoCliente tipoCliente) {
-        this.tipoCliente = tipoCliente;
     }
 
     public Credencial getCredencial() {
@@ -173,27 +166,9 @@ public class Cliente implements Serializable {
                 + ", compras=" + compras
                 + ", saldo=" + saldo
                 + ", auxilio=" + auxilio
-                + ", tipoCliente=" + tipoCliente.getRotulo()
                 + '}';
     }
 
 //</editor-fold>
-    
-    public enum TipoCliente {
-        CLIENTE("Cliente"),
-        GERENTE("Gerente"),
-        NUTRICIONISTA("Nutricionista"),
-        CAIXA("Caixa");
-
-        private String rotulo;
-
-        private TipoCliente(String rotulo) {
-            this.rotulo = rotulo;
-        }
-
-        public String getRotulo() {
-            return rotulo;
-        }
-    }
 
 }

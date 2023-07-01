@@ -1,128 +1,277 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        <h:form>
-            <p:commandButton
-                type="button"
-                value="Clientes"
-                styleClass="rounded-button ui-button-secondary"
-                onclick="PF('dlgCliente').show()"/>&nbsp;
-            <p:commandButton
-                type="button"
-                value="Compras"
-                styleClass="rounded-button ui-button-secondary"
-                onclick="PF('dlgCompras').show()"/>&nbsp;
-            <p:commandButton
-                type="button"
-                value="Produtos"
-                styleClass="rounded-button ui-button-secondary"
-                onclick="PF('dlgProdutos').show()"/>&nbsp;
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/template-novo.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-            <p:dialog header="Clientes"
-                      widgetVar="dlgCliente"
-                      minHeight="40"
-                      width="70%"
-                      showEffect="fade"
-                      modal="true"
-                      draggable="false">
-                <p:dataTable var="cliente"
-                             value="#{relatorioBean.clientes}"
-                             id="relatorioClientes">
-                    <p:column headerText="Id">
-                        <h:outputText value="#{cliente.id}" />
-                    </p:column>
+    <ui:define name="top">
+    </ui:define>
 
-                    <p:column headerText="Nome">
-                        <h:outputText value="#{cliente.nome}" />
-                    </p:column>
+    <ui:define name="content">
 
-                    <p:column headerText="Cpf">
-                        <h:outputText value="#{cliente.cpf}" />
-                    </p:column>
+        <div class="box">        
+            <h:form>
+                <p:commandButton
+                    type="button"
+                    value="Clientes"
+                    styleClass="rounded-button ui-button-secondary"
+                    onclick="PF('dlgCliente').show()"/>&nbsp;
+                <p:commandButton
+                    type="button"
+                    value="Compras"
+                    styleClass="rounded-button ui-button-secondary"
+                    onclick="PF('dlgCompras').show()"/>&nbsp;
+                <p:commandButton
+                    type="button"
+                    value="Produtos"
+                    styleClass="rounded-button ui-button-secondary"
+                    onclick="PF('dlgProdutos').show()"/>&nbsp;
+                <p:commandButton
+                    type="button"
+                    value="Cardapio Assistência"
+                    styleClass="rounded-button ui-button-secondary"
+                    onclick="PF('dlgCardapioA').show()"/>&nbsp;
+                <p:commandButton
+                    type="button"
+                    value="Cardapio AutoServiço"
+                    styleClass="rounded-button ui-button-secondary"
+                    onclick="PF('dlgCardapioSS').show()"/>&nbsp;
+                <p:commandButton
+                    type="button"
+                    value="Pratos"
+                    styleClass="rounded-button ui-button-secondary"
+                    onclick="PF('dlgPrato').show()"/>&nbsp;
+                <p:commandButton
+                    type="button"
+                    value="Componentes"
+                    styleClass="rounded-button ui-button-secondary"
+                    onclick="PF('dlgComponente').show()"/>&nbsp;
+                <p:commandButton
+                    type="button"
+                    value="Comentarios"
+                    styleClass="rounded-button ui-button-secondary"
+                    onclick="PF('dlgComentario').show()"/>&nbsp;
 
-                    <p:column headerText="Saldo">
-                        <h:outputText value="#{cliente.saldo}" />
-                    </p:column>
+                <p:dialog header="Clientes"
+                          widgetVar="dlgCliente"
+                          minHeight="40"
+                          width="70%"
+                          showEffect="fade"
+                          modal="true"
+                          draggable="false">
+                    <p:dataTable var="cliente"
+                                 value="#{relatorioBean.clientes}"
+                                 id="relatorioClientes">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{cliente.id}" />
+                        </p:column>
 
-                    <p:column headerText="Tipo">
-                        <h:outputText value="#{cliente.tipoCliente.rotulo}" />
-                    </p:column>
-                </p:dataTable>
-            </p:dialog>
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{cliente.nome}" />
+                        </p:column>
 
-            <p:dialog header="Clientes"
-                      widgetVar="dlgCompras"
-                      minHeight="40"
-                      width="75%"
-                      showEffect="fade"
-                      modal="true"
-                      draggable="false">
+                        <p:column headerText="Cpf">
+                            <h:outputText value="#{cliente.cpf}" />
+                        </p:column>
 
-                <p:dataTable var="compra"
-                             value="#{relatorioBean.compras}"
-                             id="relatorioCompras">
+                        <p:column headerText="Saldo">
+                            <h:outputText value="#{cliente.saldo}" />
+                        </p:column>
 
-                    <p:column headerText="Id">
-                        <h:outputText value="#{compra.id}" />
-                    </p:column>
+                        <p:column headerText="Tipo">
+                            <h:outputText value="#{cliente.credencial.tipoCliente.rotulo}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:dialog>
 
-                    <p:column headerText="Produtos">
-                        <h:outputText value="#{relatorioBean.produtos(compra)}" />
-                    </p:column>
+                <p:dialog header="Compras"
+                          widgetVar="dlgCompras"
+                          minHeight="40"
+                          width="75%"
+                          showEffect="fade"
+                          modal="true"
+                          draggable="false">
 
-                    <p:column headerText="Cliente">
-                        <h:outputText value="#{compra.cliente.nome}" />
-                    </p:column>
+                    <p:dataTable var="compra"
+                                 value="#{relatorioBean.compras}"
+                                 id="relatorioCompras">
 
-                    <p:column headerText="Data">
-                        <h:outputText value="#{compra.dia}" />
-                    </p:column>
+                        <p:column headerText="Id">
+                            <h:outputText value="#{compra.id}" />
+                        </p:column>
 
-                    <p:column headerText="Pago">
-                        <h:outputText value="#{compra.pago ? 'Sim' : 'Não' }" />
-                    </p:column>
+                        <p:column headerText="Produtos">
+                            <h:outputText value="#{relatorioBean.produtos(compra)}" />
+                        </p:column>
 
-                    <p:column headerText="Total">
-                        <h:outputText value="#{compra.total}" />
-                    </p:column>
+                        <p:column headerText="Cliente">
+                            <h:outputText value="#{compra.cliente.nome}" />
+                        </p:column>
 
-                </p:dataTable>
-            </p:dialog>
-            <p:dialog header="Clientes"
-                      widgetVar="dlgProdutos"
-                      minHeight="40"
-                      width="75%"
-                      showEffect="fade"
-                      modal="true"
-                      draggable="false">
-                <p:dataTable var="produto"
-                             value="#{relatorioBean.produtos}"
-                             id="relatorioProdutos">
+                        <p:column headerText="Data">
+                            <h:outputText value="#{compra.dia}" />
+                        </p:column>
 
-                    <p:column headerText="Id">
-                        <h:outputText value="#{produto.id}" />
-                    </p:column>
+                        <p:column headerText="Pago">
+                            <h:outputText value="#{compra.pago ? 'Sim' : 'Não' }" />
+                        </p:column>
 
-                    <p:column headerText="Nome">
-                        <h:outputText value="#{produto.nome}" />
-                    </p:column>
+                        <p:column headerText="Total">
+                            <h:outputText value="#{compra.total}" />
+                        </p:column>
 
-                    <p:column headerText="Descrição">
-                        <h:outputText value="#{produto.descricao}" />
-                    </p:column>
+                    </p:dataTable>
+                </p:dialog>
 
-                    <p:column headerText="Preço">
-                        <h:outputText value="#{produto.preco}" />
-                    </p:column>
+                <p:dialog header="Produtos"
+                          widgetVar="dlgProdutos"
+                          minHeight="40"
+                          width="75%"
+                          showEffect="fade"
+                          modal="true"
+                          draggable="false">
+                    <p:dataTable var="produto"
+                                 value="#{relatorioBean.produtos}"
+                                 id="relatorioProdutos">
 
-                </p:dataTable>
-            </p:dialog>
-        </h:form>
-    </h:body>
-</html>
+                        <p:column headerText="Id">
+                            <h:outputText value="#{produto.id}" />
+                        </p:column>
+
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{produto.nome}" />
+                        </p:column>
+
+                        <p:column headerText="Descrição">
+                            <h:outputText value="#{produto.descricao}" />
+                        </p:column>
+
+                        <p:column headerText="Preço">
+                            <h:outputText value="#{produto.preco}" />
+                        </p:column>
+
+                    </p:dataTable>
+                </p:dialog>
+
+                <p:dialog header="Cardápio Assistência"
+                          widgetVar="dlgCardapioA"
+                          minHeight="40"
+                          width="70%"
+                          showEffect="fade"
+                          modal="true"
+                          draggable="false">
+                    <p:dataTable var="cardapio"
+                                 value="#{relatorioBean.cardapiosAssistencia}"
+                                 id="relatorioCA">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{cardapio.id}" />
+                        </p:column>
+
+                        <p:column headerText="Dia">
+                            <h:outputText value="#{cardapio.dia}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:dialog>
+
+                <p:dialog header="Cardápio Self-Service"
+                          widgetVar="dlgCardapioSS"
+                          minHeight="40"
+                          width="70%"
+                          showEffect="fade"
+                          modal="true"
+                          draggable="false">
+                    <p:dataTable var="cardapio"
+                                 value="#{relatorioBean.cardapiosAutoServico}"
+                                 id="relatorioCSS">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{cardapio.id}" />
+                        </p:column>
+
+                        <p:column headerText="Dia">
+                            <h:outputText value="#{cardapio.dia}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:dialog>
+
+                <p:dialog header="Pratos"
+                          widgetVar="dlgPrato"
+                          minHeight="40"
+                          width="70%"
+                          showEffect="fade"
+                          modal="true"
+                          draggable="false">
+                    <p:dataTable var="prato"
+                                 value="#{relatorioBean.pratos}"
+                                 id="relatorioPrato">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{prato.id}" />
+                        </p:column>
+
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{prato.nome}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:dialog>
+
+                <p:dialog header="Componente"
+                          widgetVar="dlgComponente"
+                          minHeight="40"
+                          width="70%"
+                          showEffect="fade"
+                          modal="true"
+                          draggable="false">
+                    <p:dataTable var="componente"
+                                 value="#{relatorioBean.componentes}"
+                                 id="relatorioComponente">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{componente.id}" />
+                        </p:column>
+
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{componente.nome}" />
+                        </p:column>
+
+                        <p:column headerText="Caloria">
+                            <h:outputText value="#{componente.caloria}" />
+                        </p:column>
+
+                        <p:column headerText="Categoria">
+                            <h:outputText value="#{componente.categoria.nome}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:dialog>
+
+                <p:dialog header="Componente"
+                          widgetVar="dlgComentario"
+                          minHeight="40"
+                          width="70%"
+                          showEffect="fade"
+                          modal="true"
+                          draggable="false">
+                    <p:dataTable var="comentario"
+                                 value="#{relatorioBean.comentarios}"
+                                 id="comentarios">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{comentario.id}" />
+                        </p:column>
+
+                        <p:column headerText="Cliente">
+                            <h:outputText value="#{comentario.cliente.nome}" />
+                        </p:column>
+
+                        <p:column headerText="Avaliação">
+                            <p:rating value="#{comentario.avaliacao}" disabled="true"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:dialog>
+            </h:form>
+        </div>
+    </ui:define>
+
+    <ui:define name="bottom">
+    </ui:define>
+
+</ui:composition>
