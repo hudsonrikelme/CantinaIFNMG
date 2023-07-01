@@ -128,9 +128,14 @@ public class Credencial implements Serializable {
 
     @Override
     public String toString() {
-        return "br.ifnmg.edu.Credencial[ id=" + id + " ]";
+        return "Credencial{" + "id=" + id 
+                + ", senha=" + senha 
+                + ", email=" + email 
+                + ", tipoCliente=" + tipoCliente 
+                + ", cliente=" + cliente.getNome() + '}';
     }
 
+    
 //</editor-fold>
     public enum TipoCliente {
         CLIENTE("CLIENTE"),
