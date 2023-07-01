@@ -69,7 +69,7 @@ public class ControladorLogin {
                 break;
             //Sucesso na Autenticação
             case SUCCESS:
-                getExternalContext().redirect(getExternalContext().getRequestContextPath() + "/app/index.xhtml");
+                getExternalContext().redirect(getExternalContext().getRequestContextPath() + "/index2.xhtml");
                 break;
         }
     }
