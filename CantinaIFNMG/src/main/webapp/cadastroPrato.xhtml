@@ -1,46 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Cadastro Prato</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </h:head>
-    <h:body>
-        <h:form>
-            <p>
-                <p:outputLabel value="Nome: "/>
-                <p:inputText value="#{pratoBean.novoPrato.nome}" id="pnome"/>
-            </p>
-            <p>
-                <p:outputLabel value="Selecione os componentes do prato: "/>
-                <p:selectManyMenu 
-                    id="advanced"
-                    value="#{pratoBean.novoPrato.componentes}"
-                    converter="#{componenteConverter}"
-                    filter="true" 
-                    filterMatchMode="contains" 
-                    showCheckbox="true" 
-                    styleClass="manymenu-advanced">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/template-novo.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-                    <f:selectItems 
-                        value="#{pratoBean.componentes}" 
-                        var="componente" 
-                        itemLabel="#{componente.nome}"
-                        itemValue="#{componente}"/>
-                </p:selectManyMenu>
-            </p>
+    <ui:define name="top">
+    </ui:define>
 
-            <p>
-                <p:commandButton value="Salvar" action="#{pratoBean.salvarPrato()}"/>
-            </p>
-        </h:form>
+    <ui:define name="content">
 
-    </h:body>
-</html>
+        <div class="box">        
+            <h:form>
+                <p>
+                    <p:outputLabel value="Nome: "/>
+                    <p:inputText value="#{pratoBean.novoPrato.nome}" id="pnome"/>
+                </p>
+                <p>
+                    <p:outputLabel value="Selecione os componentes do prato: "/>
+                    <p:selectManyMenu 
+                        id="advanced"
+                        value="#{pratoBean.novoPrato.componentes}"
+                        converter="#{componenteConverter}"
+                        filter="true" 
+                        filterMatchMode="contains" 
+                        showCheckbox="true" 
+                        styleClass="manymenu-advanced">
+
+                        <f:selectItems 
+                            value="#{pratoBean.componentes}" 
+                            var="componente" 
+                            itemLabel="#{componente.nome}"
+                            itemValue="#{componente}"/>
+                    </p:selectManyMenu>
+                </p>
+
+                <p>
+                    <p:commandButton value="Salvar" action="#{pratoBean.salvarPrato()}"/>
+                </p>
+            </h:form>
+
+        </div>
+    </ui:define>
+
+    <ui:define name="bottom">
+    </ui:define>
+
+</ui:composition>
