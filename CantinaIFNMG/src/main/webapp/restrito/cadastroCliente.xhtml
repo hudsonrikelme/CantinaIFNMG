@@ -19,57 +19,53 @@
                 columns="2"
                 columnClasses="right,"
                 styleClass="ui-noborder">
-                <p:outputLabel
-                    for="nome"
-                    value="Nome" />
-                <p:inputText
-                    id="nome"
-                    value="{controladorNovaCredencial.credencial.cliente.nome}" />
-                <!--
+                <p:outputLabel>Nome</p:outputLabel>
+                <p:inputText id="nome" placeholder="Nome" value="#{controladorNovaCredencial.cliente.nome}"/>
 
-                <p:outputLabel
-                    for="email"
-                    value="Email" />
-                <p:inputText
-                    id="email"
-                    value="{controladorNovaCredencial.credencial.email}" />
+                <p:outputLabel>Email</p:outputLabel>
 
-                <p:outputLabel
-                    for="password"
-                    value="Password" />
-                <p:password
-                    id="senha"
-                    feedback="true"
-                    toggleMask="true"
-                    redisplay="true"
-                    value="{controladorNovaCredencial.credencial.senha}" />
+                <p:inputText id="keyword" placeholder="Email" value="#{controladorNovaCredencial.credencial.email}"/>
 
-                <p:outputLabel
-                    for="credencial"
-                    value="Credencial" />
-                <p:selectOneRadio
-                    id="tipocliente"
-                    value="{controladorNovaCredencial.credencial.tipoCliente}">
-                    <f:selectItem
-                        itemLabel="Gerente"
-                        itemValue="GERENTE"/>
-                    <f:selectItem
-                        itemLabel="Cliente"
-                        itemValue="CLIENTE"/>
-                    <f:selectItem
-                        itemLabel="Caixa"
-                        itemValue="CAIXA"/>
-                    <f:selectItem
-                        itemLabel="Nutricionista"
-                        itemValue="NUTRICIONISTA"/>
-                </p:selectOneRadio>
+                <p:outputLabel>CPF</p:outputLabel>
+
+                <p:inputText id="cpf" placeholder="CPF" value="#{controladorNovaCredencial.cliente.cpf}"/>
+
+                <p:outputLabel>Senha</p:outputLabel>
+
+                <p:password id="password"  placeholder="Senha" value="#{controladorNovaCredencial.credencial.senha}"/>
+
+                <!--                <p:outputLabel
+                                    for="credencial"
+                                    value="Credencial" />
+                                <p:selectOneRadio
+                                    id="tipocliente"
+                                    value="{controladorNovaCredencial.credencial.tipoCliente}">
+                                    <f:selectItem
+                                        itemLabel="Gerente"
+                                        itemValue="GERENTE"/>
+                                    <f:selectItem
+                                        itemLabel="Cliente"
+                                        itemValue="CLIENTE"/>
+                                    <f:selectItem
+                                        itemLabel="Caixa"
+                                        itemValue="CAIXA"/>
+                                    <f:selectItem
+                                        itemLabel="Nutricionista"
+                                        itemValue="NUTRICIONISTA"/>
+                                </p:selectOneRadio>-->
 
                 <p:commandLink
                     value="Cancelar"
                     action="/app/index?faces-redirect=true" />
-                <p:commandButton
-                    value="Cadastrar"
-                    action="{controladorNovaCredencial.save()}" />-->
+
+                <h:commandButton class="btn-gerar"
+                                 id="submit"
+                                 value="Cadastrar"
+                                 action="#{controladorNovaCredencial.save()}"
+                                 p:update="@form"
+                                 p:ajax="false"
+                                 style="centro"/>
+
             </p:panelGrid>
         </h:form>
 
