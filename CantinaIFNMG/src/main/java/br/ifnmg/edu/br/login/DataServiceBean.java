@@ -52,9 +52,8 @@ public class DataServiceBean
                 cliente);
         novaCredencial.setTipoCliente(tipoCliente);
         cliente.setCredencial(novaCredencial);
-        novaCredencial.setTipoCliente(tipoCliente);
-
         
+        System.out.println(novaCredencial);
         em.persist(novaCredencial);
 
         return novaCredencial;

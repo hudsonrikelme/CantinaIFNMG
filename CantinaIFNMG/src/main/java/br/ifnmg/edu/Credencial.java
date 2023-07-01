@@ -20,7 +20,7 @@ import javax.persistence.Table;
  * @author Lucas Freitas &lt;lpf1 at ifnmg.edu.br&gt;
  */
 @Entity
-@Table(name = "credenciais")
+//@Table(name = "credenciais")
 @NamedQueries({
     @NamedQuery(
             name = "Credencial.all",
