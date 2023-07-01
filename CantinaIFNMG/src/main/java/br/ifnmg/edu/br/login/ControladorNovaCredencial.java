@@ -51,9 +51,10 @@ public class ControladorNovaCredencial {
         credencial = dataService.criaCredencial(
                 cliente,
                 credencial.getEmail(), 
-                credencial.getSenha());
+                credencial.getSenha(),
+                Credencial.TipoCliente.CLIENTE);
         
         
-        return "credenciais?faces-redirect=true";
+        return "app/index?faces-redirect=true";
     }
 }

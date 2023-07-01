@@ -33,10 +33,11 @@ public class DataServiceBean
      * @param cliente
      * @param email
      * @param senha
+     * @param tipoCliente
      * @return 
      */
     @Override
-    public Credencial criaCredencial(Cliente cliente, String email, String senha) {
+    public Credencial criaCredencial(Cliente cliente, String email, String senha, Credencial.TipoCliente tipoCliente) {
 
         Map<String, String> parameters = new HashMap<>();
         parameters.put("Pbkdf2PasswordHash.Iterations", "3071");
@@ -49,7 +50,7 @@ public class DataServiceBean
                 passwordHasher.generate(senha.toCharArray()), 
                 cliente);
         cliente.setCredencial(novaCredencial);     
-
+        novaCredencial.setTipoCliente(Credencial.TipoCliente.CLIENTE);
         em.persist(novaCredencial);
         
         return novaCredencial;
