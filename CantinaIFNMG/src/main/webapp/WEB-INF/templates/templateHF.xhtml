@@ -14,16 +14,21 @@
 
     <h:body>
 
+
         <header id="header">
+
+            <h:graphicImage  id="logo" library="img" name="logoCantina.png"/>
+            <!--            <img src="../resources/img/logoCantina.png" alt="Logo da Cantina" />-->
+
             <ui:insert name="top"></ui:insert>
             <nav>
-            <ul>
-                <li><a href="#">Pagina1</a></li>
-                <li><a href="#">Pagina2</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Cadastro</a></li>
-            </ul>
-        </nav>
+                <ul>
+                    <li><a href="#">Pagina1</a></li>
+                    <li><a href="#">Pagina2</a></li>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Cadastro</a></li>
+                </ul>
+            </nav>
         </header>
 
         <main id="content" class="center_content">
@@ -34,6 +39,7 @@
             <ui:insert name="bottom">Bottom</ui:insert>
             <p>Testando coisas aqui footer</p>
         </footer>
+
 
     </h:body>
 
