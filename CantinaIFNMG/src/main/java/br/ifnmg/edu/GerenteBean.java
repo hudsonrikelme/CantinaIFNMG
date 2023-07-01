@@ -4,13 +4,19 @@
  */
 package br.ifnmg.edu;
 
+import br.ifnmg.edu.compra.CompraServiceLocal;
+import br.ifnmg.edu.compra.Compra;
 import br.ifnmg.edu.produto.Produto;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.inject.Inject;
+import org.primefaces.PrimeFaces;
+import org.primefaces.model.DialogFrameworkOptions;
 
 /**
  *
@@ -95,15 +101,22 @@ public class GerenteBean implements Serializable {
     }
 //</editor-fold>
 
-
     public String carregarCompras(Cliente c) {
-    
-        if(compras == null){
-            compras = compraService.localizarCompraPorCliente(c);
+
+        compras = compraService.localizarCompraPorCliente(c);
+
+        if (compras.isEmpty()) {
+            addMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Cliente sem compras");
+            return null;
         }
         
         return "comprasCliente?faces-redirect=true";
 
+    }
+
+    public void addMessage(FacesMessage.Severity severity, String summary, String detail) {
+        FacesContext.getCurrentInstance().
+                addMessage(null, new FacesMessage(severity, summary, detail));
     }
 
     public String produtos(Compra c) {
@@ -116,13 +129,13 @@ public class GerenteBean implements Serializable {
     }
 
     public String salvarCliente() {
-        c.setCredencial(cred);
-        c.setTipoCliente(tipoClienteSelecionado);
+//        c.setCredencial(cred);
+//        c.setTipoCliente(tipoClienteSelecionado);
         clienteService.salvar(c);
         reset();
         recarregarClientes();
 
-        return "editarAluno?faces-redirect=true";
+        return "editarCliente?faces-redirect=true";
     }
 
     public List<Cliente> recuperarTodosClientes() {

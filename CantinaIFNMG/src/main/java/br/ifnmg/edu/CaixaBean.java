@@ -4,6 +4,8 @@
  */
 package br.ifnmg.edu;
 
+import br.ifnmg.edu.compra.CompraServiceLocal;
+import br.ifnmg.edu.compra.Compra;
 import br.ifnmg.edu.produto.ProdutoServiceLocal;
 import br.ifnmg.edu.produto.Produto;
 import java.io.Serializable;
@@ -15,7 +17,10 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.NavigationHandler;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -43,6 +48,7 @@ public class CaixaBean implements Serializable {
     private Compra.TipoPagamento tipoPagamentoSelecionado;
     private List<Compra.TipoPagamento> tiposPagamento;
     private Boolean pago;
+    private Compra c;
 
     public CaixaBean() {
         produtosSelecionados = new ArrayList<>();
@@ -141,8 +147,9 @@ public class CaixaBean implements Serializable {
     }
 
     public String salvar() {
-
-        Compra c = new Compra();
+        if (c == null) {
+            c = new Compra();
+        }
         Cliente cliente1 = clienteService.localizarPorId(cliente.getId());
 
         c.setDia(LocalDate.now());
@@ -172,8 +179,19 @@ public class CaixaBean implements Serializable {
 
     }
 
+    public String editarCompra(Compra compra) {
+        c = compra;
+        cliente = clienteService.localizarPorId(compra.getCliente().getId());
+        produtosSelecionados = compra.getProdutos();
+        tipoPagamentoSelecionado = compra.getTipoPagamento();
+        pago = compra.getPago();
+        total = compra.getTotal();
+        
+        return "caixa?faces-redirect=true";
+    }
 
     private void reset() {
+        c = new Compra();
         produtosSelecionados.clear();
         pago = false;
         produto = new Produto();

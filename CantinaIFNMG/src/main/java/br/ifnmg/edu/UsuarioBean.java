@@ -4,6 +4,8 @@
  */
 package br.ifnmg.edu;
 
+import br.ifnmg.edu.compra.CompraServiceLocal;
+import br.ifnmg.edu.compra.Compra;
 import br.ifnmg.edu.produto.Produto;
 import javax.inject.Named;
 import java.io.Serializable;
