@@ -2,7 +2,6 @@ package br.ifnmg.edu.br.login;
 
 import br.ifnmg.edu.Cliente;
 import br.ifnmg.edu.Credencial;
-import br.ifnmg.edu.br.login.DataServiceBeanLocal;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,7 +23,7 @@ public class ControladorNovaCredencial {
     public ControladorNovaCredencial() {
         cliente = new Cliente();
         credencial = new Credencial();
-        credencial.setTipoCliente(Credencial.TipoCliente.CLIENTE);
+//        credencial.setTipoCliente(Credencial.TipoCliente.CLIENTE);
         credencial.setCliente(cliente);
     }
 
@@ -51,7 +50,8 @@ public class ControladorNovaCredencial {
         credencial = dataService.criaCredencial(
                 cliente,
                 credencial.getEmail(), 
-                credencial.getSenha());
+                credencial.getSenha(),
+                Credencial.TipoCliente.CLIENTE);
         
         
         return "credenciais?faces-redirect=true";
